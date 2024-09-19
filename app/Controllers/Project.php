@@ -33,9 +33,9 @@ class Project extends BaseController
 		}
 
 		$data_page = (object)[
-			'overal_plan' => 75,
-			'overal_actual' => 60,
-			'overal_variance' => 15,
+			'overal_plan' => 0,
+			'overal_actual' => 0,
+			'overal_variance' => 0,
 			'chart_pt_engineering_plan' => 50,
 			'chart_pt_engineering_actual' => 30,
 			'chart_pt_procurement_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
