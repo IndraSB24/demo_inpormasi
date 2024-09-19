@@ -573,7 +573,7 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="d-none">
                                                 <tr>
                                                     <td style="text-align: left;">Ready Mix Material-K430</td>
                                                     <td nowrap>20-04-2024</td>
