@@ -191,6 +191,9 @@ class Project extends BaseController
 			'value'         => $this->request->getPost('value'), 
 			'nama_project'  => $this->request->getPost('nama_project'),
 			'deskripsi'     => $this->request->getPost('description'),
+			'engineering_value'     => $this->request->getPost('engineering_value'),
+			'procurement_value'     => $this->request->getPost('procurement_value'),
+			'construction_value'     => $this->request->getPost('construction_value'),
 			'start_date'    => date_db_format($this->request->getPost('start_date')),
 			'end_date'      => date_db_format($this->request->getPost('end_date'))
 		];
