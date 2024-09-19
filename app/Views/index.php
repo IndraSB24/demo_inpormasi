@@ -271,16 +271,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- contract no -->
                     <div>
                         <label class="form-label">Contract No</label>
                         <input type="text" class="form-control" name="contract_no" id="contract_no" />
                     </div>
-                    <!-- <div>
-                    <label class="form-label">Award Date</label>
-                    <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                        <input type="text" class="form-control" name="award_date" id="award_date" placeholder="Award Date" />
+                    <!-- project name -->
+                    <div>
+                        <label class="form-label">Project Name</label>
+                        <input type="text" class="form-control" name="nama_project" id="nama_project" />
                     </div>
-                </div> -->
+                    <!-- start at & finish at -->
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label">Start At</label>
@@ -295,18 +296,33 @@
                             </div>
                         </div>
                     </div>
+                    <!-- project manager -->
                     <div>
                         <label class="form-label">Project Manager</label>
                         <input type="text" class="form-control" name="project_manager" id="project_manager" />
                     </div>
-                    <div>
-                        <label class="form-label">Project Value</label>
-                        <input type="number" class="form-control" name="value" id="value" />
+                    <!-- project value -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <label class="form-label">Engineering Value</label>
+                                <input type="number" class="form-control" name="engineering_value" id="engineering_value" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <label class="form-label">Procurement Value</label>
+                                <input type="number" class="form-control" name="procurement_value" id="procurement_value" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <label class="form-label">Construction Value</label>
+                                <input type="number" class="form-control" name="construction_value" id="construction_value" />
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label class="form-label">Project Name</label>
-                        <input type="text" class="form-control" name="nama_project" id="nama_project" />
-                    </div>
+                    <!-- description -->
                     <div>
                         <label class="form-label">Description </label>
                         <input type="text" class="form-control" name="description " id="description " />
@@ -384,15 +400,13 @@
                     method: 'POST',
                     dataType: "JSON",
                     data: {
-                        // contract_no: contract_no,
-                        // award_date: award_date,
-                        // project_manager: project_manager,
-                        // value: value
                         contract_no : $('#contract_no').val(),
                         start_date : $('#start_date').val(),
                         end_date : $('#end_date').val(),
                         project_manager : $('#project_manager').val(),
-                        value : $('#value').val(),
+                        engineering_value : $('#engineering_value').val(),
+                        procurement_value : $('#procurement_value').val(),
+                        construction_value : $('#construction_value').val(),
                         nama_project : $('#nama_project').val(),
                         description : $('#description').val(),
                     }

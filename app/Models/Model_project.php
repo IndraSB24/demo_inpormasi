@@ -15,7 +15,7 @@ class Model_project extends Model
 
     protected $allowedFields = [
         'contract_no', 'award_date', 'manager', 'value', 'progress', 'created_by',
-        'nama_project', 'deskripsi', 'start_date', 'end_date'
+        'nama_project', 'deskripsi', 'start_date', 'end_date', 'enginering_value', 'procurement_value', 'construction_value'
     ];
 
     protected $useTimestamps = true;
