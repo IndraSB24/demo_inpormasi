@@ -188,7 +188,6 @@ class Project extends BaseController
     	$data = [
 			'contract_no'   => $this->request->getPost('contract_no'),
 			'manager'       => $this->request->getPost('project_manager'), 
-			'value'         => $this->request->getPost('value'), 
 			'nama_project'  => $this->request->getPost('nama_project'),
 			'deskripsi'     => $this->request->getPost('description'),
 			'engineering_value'     => $this->request->getPost('engineering_value'),
