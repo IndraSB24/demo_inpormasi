@@ -325,7 +325,7 @@
                     <!-- description -->
                     <div>
                         <label class="form-label">Description </label>
-                        <input type="text" class="form-control" name="description " id="description " />
+                        <input type="text" class="form-control" name="description" id="description" />
                     </div>
                 </div>
                 <div class="modal-footer">
