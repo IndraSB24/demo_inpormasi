@@ -503,7 +503,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="d-none">
                                             <tr>
                                                 <td style="text-align: left;">Contract Effective Date</td>
                                                 <td nowrap>28 Dec 23</td>
