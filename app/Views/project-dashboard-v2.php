@@ -419,7 +419,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4">
+                        <div class="row mt-4 d-none">
                             <div class="col-xl-12">
                                 <div class="galon" style="background-color:#90E0EF;border: 1px solid #00B4D8;">
                                     <div class="row" style="padding: 20px;padding-bottom:0">
