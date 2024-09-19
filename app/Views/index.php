@@ -183,7 +183,7 @@
                                                             <td><?= tgl_indo($row->end_date) ?></td>
                                                             <td><?= $row->nama_project ?></td>
                                                             <td><?= $row->manager ?></td>
-                                                            <td><?= rupiah($row->value) ?></td>
+                                                            <td><?= rupiah(1234567) ?></td>
                                                             <td><?= $row->deskripsi ?></td>
                                                             <td><?= $row->plan ?>%</td>
                                                             <td><?= $row->progress ?>%</td>
