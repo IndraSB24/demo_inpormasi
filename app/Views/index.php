@@ -52,7 +52,9 @@
                                         <div class="d-flex">
                                             <div class="flex-1 overflow-hidden">
                                                 <p class="text-truncate font-size-14 mb-2">Number of Projects</p>
-                                                <h3 class="mb-0 text-light">15</h3>
+                                                <h3 class="mb-0 text-light">
+                                                    <?=  count($list_project); ?>
+                                                </h3>
                                             </div>
                                             <div class="text-muted ms-auto text-light">
                                                 <i class="text-light ri-building-2-line font-size-24"></i>
