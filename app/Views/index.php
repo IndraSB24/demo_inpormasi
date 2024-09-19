@@ -75,7 +75,9 @@
                                         <div class="d-flex">
                                             <div class="flex-1 overflow-hidden">
                                                 <p class="text-truncate font-size-14 mb-2">On Time/Ahead</p>
-                                                <h3 class="text-light mb-0">10</h3>
+                                                <h3 class="text-light mb-0">
+                                                    <?=  count($list_project); ?>
+                                                </h3>
                                             </div>
                                             <div class="text-light ms-auto">
                                                 <i class="ri-chat-check-line font-size-24"></i>
@@ -96,7 +98,9 @@
                                         <div class="d-flex">
                                             <div class="flex-1 overflow-hidden">
                                                 <p class="text-truncate font-size-14 mb-2">Delay</p>
-                                                <h3 class="text-light mb-0">5</h3>
+                                                <h3 class="text-light mb-0">
+                                                    0
+                                                </h3>
                                             </div>
                                             <div class="text-light ms-auto">
                                                 <i class="ri-chat-delete-line font-size-24"></i>
