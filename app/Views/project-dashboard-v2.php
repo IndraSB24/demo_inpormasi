@@ -168,6 +168,9 @@
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= $data_page->engineering_wf ?>% </strong></span>
+                                                        </div>
+                                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($progressChartDataEngineering['percent_plan'][0]->cum_progress_plan), 2) ?>%</strong></small>
 
@@ -190,6 +193,9 @@
                                                         <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= $data_page->procurement_wf ?>% </strong></span>
+                                                        </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
@@ -213,6 +219,9 @@
                                                         <div id="radial_chart_3" class="apex-charts m-0 p-0"></div>
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= $data_page->construction_wf ?>%</strong></span>
+                                                        </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
