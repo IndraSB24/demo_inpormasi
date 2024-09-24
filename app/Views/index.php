@@ -184,7 +184,11 @@
                                                 <tbody>
                                                     <?php foreach ($list_project as $row) : ?>
                                                         <tr>
-                                                            <td><a href="project-dashboard" class="text-info fw-bold"><?= $row->contract_no ?></a> </td>
+                                                            <td>
+                                                                <a href="<?= base_url('project/index/""/'.$row->id) ?>" class="text-info fw-bold">
+                                                                    <?= $row->contract_no ?>
+                                                                </a> 
+                                                            </td>
                                                             <td><?= tgl_indo($row->start_date) ?></td>
                                                             <td><?= tgl_indo($row->end_date) ?></td>
                                                             <td><?= $row->nama_project ?></td>
