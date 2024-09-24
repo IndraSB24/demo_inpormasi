@@ -1135,13 +1135,13 @@
             maximumSelectionLength: 2 // contoh konfigurasi tambahan
         });
         $("#Detail-Engineering").click(function() {
-            window.location.href = "<?= base_url('engineering-dashboard') ?>"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
+            window.location.href = "<?= base_url('engineering-dashboard').'/'.$dataProject->id ?>"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });
         $("#Detail-Procurement").click(function() {
-            window.location.href = "<?= base_url('procurement-dashboard') ?>";
+            window.location.href = "<?= base_url('procurement-dashboard').'/'.$dataProject->id ?>";
         });
         $("#Detail-Construction").click(function() {
-            window.location.href = "<?= base_url('construction-dashboard') ?>";
+            window.location.href = "<?= base_url('construction-dashboard').'/'.$dataProject->id ?>";
         });
     });
 </script>
