@@ -190,6 +190,24 @@ class Project extends BaseController
 		$procurement_value = $this->request->getPost('procurement_value');
 		$construction_value = $this->request->getPost('construction_value');
 
+		$total_value = $engineering_value + $procurement_value + $construction_value;
+
+		// Prevent division by zero
+		if ($total_value > 0) {
+			// Calculate the work factors (as percentages or ratios)
+			$engineering_wf = $engineering_value / $total_value;
+			$procurement_wf = $procurement_value / $total_value;
+			$construction_wf = $construction_value / $total_value;
+		} else {
+			// Handle case where the total value is zero (no values provided)
+			$engineering_wf = $procurement_wf = $construction_wf = 0;
+		}
+
+		// Optionally convert to percentages
+		$engineering_percentage = $engineering_wf * 100;
+		$procurement_percentage = $procurement_wf * 100;
+		$construction_percentage = $construction_wf * 100;
+
     	$data = [
 			'contract_no'   => $this->request->getPost('contract_no'),
 			'manager'       => $this->request->getPost('project_manager'), 
@@ -199,10 +217,11 @@ class Project extends BaseController
 			'procurement_value'     => $procurement_value,
 			'construction_value'     => $construction_value,
 			'start_date'    => date_db_format($this->request->getPost('start_date')),
-			'end_date'      => date_db_format($this->request->getPost('end_date'))
+			'end_date'      => date_db_format($this->request->getPost('end_date')),
+			'engineering_wf' => $engineering_wf,
+			'procurement_wf' => $procurement_wf,
+			'construction_wf' => $construction_wf
 		];
-
-		$total_value = 
 
     	$this->main_model->save($data);
     }
