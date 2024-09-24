@@ -204,7 +204,9 @@
                                                                 ?>
                                                             </td>
                                                             <td id="tooltip-container9">
-                                                                <a type="button" href="project-dashboard" class="btn btn-sm btn-success btn-detail" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete">Detail</a>
+                                                                <a type="button" href="<?= base_url('project/index/""/'.$row->id) ?>" class="btn btn-sm btn-success btn-detail" data-id="<?= $row->id ?>">
+                                                                    Detail
+                                                                </a>
                                                                 <!-- <button type="button" class="btn btn-sm btn-danger btn-hapus" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete"><i class="mdi mdi-trash-can font-size-18"></i></button> -->
                                                             </td>
                                                         </tr>
