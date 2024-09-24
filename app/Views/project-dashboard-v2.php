@@ -162,14 +162,14 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="selectable" id="Detail-Engineering" style="border: 1px solid #E0E0E0; border-radius: 8px;">
-                                                <div class="mt-3" style="display: flex; justify-content: center; align-items: center;">
-                                                    <span><strong>Weight Factor: <?= $data_page->construction_wf ?>%</strong></span>
-                                                </div>
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <div id="radial_chart_1" class="apex-charts m-0 p-0"></div>
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->engineering_wf), 2) ?>% </strong></span>
+                                                        </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($progressChartDataEngineering['percent_plan'][0]->cum_progress_plan), 2) ?>%</strong></small>
@@ -189,17 +189,17 @@
                                         <div class="col-md-4">
                                             <div class="selectable" id="Detail-Procurement" style="border: 1px solid #E0E0E0; border-radius: 8px;">
                                                 <div class="row">
-                                                    <div class="mt-3" style="display: flex; justify-content: center; align-items: center;">
-                                                        <span><strong>Weight Factor: <?= $data_page->construction_wf ?>%</strong></span>
-                                                    </div>
                                                     <div class="col-7">
                                                         <div id="radial_chart_2" class="apex-charts m-0 p-0"></div>
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->procurement_wf), 2) ?> </strong></span>
+                                                        </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
-
+                                                            
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: #fcb92c;"></div>
@@ -214,14 +214,14 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="selectable" id="Detail-Construction" style="border: 1px solid #E0E0E0; border-radius: 8px;">
-                                                <div class="mt-3" style="display: flex; justify-content: center; align-items: center;">
-                                                    <span><strong>Weight Factor: <?= $data_page->construction_wf ?>%</strong></span>
-                                                </div>
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <div id="radial_chart_3" class="apex-charts m-0 p-0"></div>
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
+                                                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->construction_wf), 2) ?></strong></span>
+                                                        </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
                                                             <small><strong>Plan <?= number_format(floatval($data_page->chart_pt_procurement_plan), 2) ?>%</strong></small>
