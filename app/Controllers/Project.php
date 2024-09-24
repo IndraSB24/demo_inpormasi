@@ -39,9 +39,9 @@ class Project extends BaseController
 			'chart_pt_engineering_actual' => 30,
 			'chart_pt_procurement_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
 			'chart_pt_procurement_actual' => $this->Model_doc_procurement->getCumDataActualPerToday(),
-			'engineering_wf' => $data_project->engineering_wf,
-			'procurement_wf' => $data_project->procurement_wf,
-			'construction_wf' => $data_project->construction_wf
+			'engineering_wf' => $data_project['engineering_wf'],
+			'procurement_wf' => $data_project['procurement_wf'],
+			'construction_wf' => $data_project['construction_wf']
 		];
 
 		$data = [
