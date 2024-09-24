@@ -27,10 +27,9 @@ class Project extends BaseController
 		helper(['session_helper', 'upload_path_helper', 'NumberFormat_helper']);
     }
     
-	public function index($project_detail=""){
-		if (!sess('active_user_id')) {
-			redirect('login');
-		}
+	public function index($project_detail="", $id_project=NULL){
+
+		$data_project = $this->main_model->getById($id_project);
 
 		$data_page = (object)[
 			'overal_plan' => 0,
@@ -39,7 +38,10 @@ class Project extends BaseController
 			'chart_pt_engineering_plan' => 50,
 			'chart_pt_engineering_actual' => 30,
 			'chart_pt_procurement_plan' => $this->Model_doc_procurement->getCumDataPlanPerToday(),
-			'chart_pt_procurement_actual' => $this->Model_doc_procurement->getCumDataActualPerToday()
+			'chart_pt_procurement_actual' => $this->Model_doc_procurement->getCumDataActualPerToday(),
+			'engineering_wf' => $data_project->engineering_wf,
+			'procurement_wf' => $data_project->procurement_wf,
+			'construction_wf' => $data_project->construction_wf
 		];
 
 		$data = [

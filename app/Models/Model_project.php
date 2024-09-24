@@ -106,4 +106,15 @@ class Model_project extends Model
     {
         return $this->countAll();
     }
+
+    public function getById($id_project) {
+        // Validate the ID
+        if (!$id_project) {
+            return null; // or handle the error as needed
+        }
+    
+        // Query the database for the project by ID
+        return $this->where('id', $id_project)->first();
+    }
+    
 }
