@@ -48,7 +48,7 @@ $routes->get('dashboard-get-project-list', 'Home::get_datatable');
 $routes->put('submitPdf', 'Project_detail_engineering::add_comment');
 
 // Project
-$routes->get('project-dashboard', 'Project::index');
+$routes->get('project-dashboard/(:any)/(:any)', 'Project::index/$1/$2');
 $routes->get('project-add', 'Project::add');
 $routes->get('project-show-over-prog-month', 'Project::show_over_prog_month_detail');
 
