@@ -23,8 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	// public $baseURL = 'http://inpormasi.me/Admin/public';
-	public $baseURL = 'http://inpormasi.me/';
+	// public $baseURL = 'http://demo_inpormasi.me/Admin/public';
+	public $baseURL = 'http://demo_inpormasi.me/';
 
 	/**
 	 * --------------------------------------------------------------------------
