@@ -1379,6 +1379,53 @@ function generateWaitingBadge()
         const plan_ifc = document.getElementById("plan_ifc").value;
         const man_hour_plan = document.getElementById("plan_man_hour").value;
         var timerInterval;
+        // Swal.fire({
+        //     title: 'Tambah Dokumen?',
+        //     icon: 'info',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Ya',
+        //     cancelButtonText: 'Batal'
+        // }).then(function(result) {
+        //     if (result.value) {
+        //         $.ajax({
+        //             url: "<?= base_url('Project_detail_engineering/add/doc_engineering') ?>",
+        //             method: 'POST',
+        //             dataType: "JSON",
+        //             data: {
+        //                 level_code: level_code,
+        //                 description: description,
+        //                 weight_factor: weight_factor,
+        //                 discipline: discipline,
+        //                 external_asbuild_plan: external_asbuild_plan,
+        //                 plan_ifa: plan_ifa,
+        //                 plan_ifc: plan_ifc,
+        //                 man_hour_plan: man_hour_plan,
+        //                 idProject: idProject
+        //             },
+        //             success: () => {
+        //                 Swal.fire({
+        //                     title: 'Disimpan!',
+        //                     icon: 'success',
+        //                     text: 'Data berhasil disimpan.',
+        //                     timer: 1000,
+        //                     confirmButtonColor: "#5664d2",
+        //                     onBeforeOpen: function() {
+        //                         //Swal.showLoading()
+        //                         timerInterval = setInterval(function() {
+        //                             Swal.getContent().querySelector('strong')
+        //                                 .textContent = Swal.getTimerLeft()
+        //                         }, 100)
+        //                     },
+        //                     onClose: function() {
+        //                         location.reload()
+        //                     }
+        //                 })
+        //             },
+        //             error: err => console.log(err),
+        //         });
+        //     }
+        // })
+
         Swal.fire({
             title: 'Tambah Dokumen?',
             icon: 'info',
@@ -1386,7 +1433,7 @@ function generateWaitingBadge()
             confirmButtonText: 'Ya',
             cancelButtonText: 'Batal'
         }).then(function(result) {
-            if (result.value) {
+            if (result.isConfirmed) {  // Check the correct property (isConfirmed) for newer versions of SweetAlert
                 $.ajax({
                     url: "<?= base_url('Project_detail_engineering/add/doc_engineering') ?>",
                     method: 'POST',
@@ -1402,29 +1449,45 @@ function generateWaitingBadge()
                         man_hour_plan: man_hour_plan,
                         idProject: idProject
                     },
-                    success: () => {
-                        Swal.fire({
-                            title: 'Disimpan!',
-                            icon: 'success',
-                            text: 'Data berhasil disimpan.',
-                            timer: 1000,
-                            confirmButtonColor: "#5664d2",
-                            onBeforeOpen: function() {
-                                //Swal.showLoading()
-                                timerInterval = setInterval(function() {
-                                    Swal.getContent().querySelector('strong')
-                                        .textContent = Swal.getTimerLeft()
-                                }, 100)
-                            },
-                            onClose: function() {
-                                location.reload()
-                            }
-                        })
+                    success: response => {
+                        if (response.success) {  // Check if the response indicates success
+                            Swal.fire({
+                                title: 'Disimpan!',
+                                icon: 'success',
+                                text: response.message,
+                                timer: 1000,
+                                confirmButtonColor: "#5664d2",
+                                onBeforeOpen: function() {
+                                    timerInterval = setInterval(function() {
+                                        Swal.getContent().querySelector('strong')
+                                            .textContent = Swal.getTimerLeft();
+                                    }, 100);
+                                },
+                                onClose: function() {
+                                    location.reload();  // Reload page on success
+                                }
+                            });
+                        } else {
+                            // Handle failure in response
+                            Swal.fire({
+                                title: 'Gagal!',
+                                icon: 'error',
+                                text: response.message || 'Terjadi kesalahan dalam menyimpan data.'
+                            });
+                        }
                     },
-                    error: err => console.log(err),
+                    error: err => {
+                        console.error(err);  // Log error for debugging
+                        Swal.fire({
+                            title: 'Error!',
+                            icon: 'error',
+                            text: 'Gagal menyimpan data, cek koneksi atau hubungi admin.'
+                        });
+                    }
                 });
             }
-        })
+        });
+
     })
 
     // btn delete document

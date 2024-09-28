@@ -341,44 +341,114 @@ class Project_detail_engineering extends BaseController
     }
 
 	// add
+    // public function add($kode = null)
+    // {
+    //     switch ($kode) {
+    //         case 'doc_engineering':
+    //             // Collect data from the request
+    //             $data = [
+    //                 'level_code'    => $this->request->getPost('level_code'), 
+    //                 'description'   => $this->request->getPost('description'),
+    //                 'weight_factor' => $this->request->getPost('weight_factor'),
+    //                 'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
+    //                 'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
+    //                 'external_asbuild_plan' => date_db_format($this->request->getPost('external_asbuild_plan')),
+    //                 'man_hour_plan' => $this->request->getPost('man_hour_plan'),
+    //                 'id_doc_dicipline' => $this->request->getPost('discipline')
+    //             ];
+
+    //             // Save the new record
+    //             $this->doc_engineering_model->save($data);
+
+    //             // Get the id_project (you need to pass this, adjust according to your actual implementation)
+    //             $id_project = $this->request->getPost('idProject');
+
+    //             // Recalculate man-hours and update weight factor
+    //             $this->doc_engineering_model->processProject($id_project);
+
+    //             // Return a response
+    //             $response = [
+    //                 'success' => true,
+    //                 'message' => 'Data added and project processed successfully.'
+    //             ];
+
+    //             return json_encode($response);
+    //             break;
+    //     }
+    // }
+
     public function add($kode = null)
     {
-        switch ($kode) {
-            case 'doc_engineering':
-                // Collect data from the request
-                $data = [
-                    'level_code'    => $this->request->getPost('level_code'), 
-                    'description'   => $this->request->getPost('description'),
-                    'weight_factor' => $this->request->getPost('weight_factor'),
-                    'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
-                    'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
-                    'external_asbuild_plan' => date_db_format($this->request->getPost('external_asbuild_plan')),
-                    'man_hour_plan' => $this->request->getPost('man_hour_plan'),
-                    'id_doc_dicipline' => $this->request->getPost('discipline')
-                ];
+        try {
+            switch ($kode) {
+                case 'doc_engineering':
+                    // Collect data from the request
+                    $data = [
+                        'level_code'    => $this->request->getPost('level_code'), 
+                        'description'   => $this->request->getPost('description'),
+                        'weight_factor' => $this->request->getPost('weight_factor'),
+                        'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
+                        'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
+                        'external_asbuild_plan' => date_db_format($this->request->getPost('external_asbuild_plan')),
+                        'man_hour_plan' => $this->request->getPost('man_hour_plan'),
+                        'id_doc_dicipline' => $this->request->getPost('discipline')
+                    ];
 
-                // Reset auto increment (if necessary)
-                $this->doc_engineering_model->reset_increment();
+                    // Check if the essential data is present
+                    if (!$data['level_code'] || !$data['description']) {
+                        return json_encode([
+                            'success' => false,
+                            'message' => 'Required fields are missing.'
+                        ]);
+                    }
 
-                // Save the new record
-                $this->doc_engineering_model->save($data);
+                    // Save the new record
+                    if (!$this->doc_engineering_model->save($data)) {
+                        return json_encode([
+                            'success' => false,
+                            'message' => 'Failed to save document data.'
+                        ]);
+                    }
 
-                // Get the id_project (you need to pass this, adjust according to your actual implementation)
-                $id_project = $this->request->getPost('idProject');
+                    // Get the id_project (you need to pass this, adjust according to your actual implementation)
+                    $id_project = $this->request->getPost('idProject');
+                    if (!$id_project) {
+                        return json_encode([
+                            'success' => false,
+                            'message' => 'Project ID is missing.'
+                        ]);
+                    }
 
-                // Recalculate man-hours and update weight factor
-                $this->doc_engineering_model->processProject($id_project);
+                    // Recalculate man-hours and update weight factor
+                    if (!$this->doc_engineering_model->processProject($id_project)) {
+                        return json_encode([
+                            'success' => false,
+                            'message' => 'Failed to process project man-hours and weight factors.'
+                        ]);
+                    }
 
-                // Return a response
-                $response = [
-                    'success' => true,
-                    'message' => 'Data added and project processed successfully.'
-                ];
+                    // If all steps succeeded, return success
+                    return json_encode([
+                        'success' => true,
+                        'message' => 'Data added and project processed successfully.'
+                    ]);
+                    break;
 
-                return json_encode($response);
-                break;
+                default:
+                    return json_encode([
+                        'success' => false,
+                        'message' => 'Invalid operation code.'
+                    ]);
+            }
+        } catch (\Exception $e) {
+            // Handle exceptions and return the error
+            return json_encode([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
+            ]);
         }
     }
+
 
 
     // function to count dynamic wf
