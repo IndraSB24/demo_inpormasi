@@ -1110,58 +1110,58 @@ class Model_doc_engineering extends Model
         return ($manHourPlan / $totalManHourPlan) * 100;
     }
 
-    // Calculate total man-hour plan and recalculate WF
     public function processProject($id_project)
     {
-        // Initialize log message
-        $logMessage = '';
+        // 1. Get all records by id_project
+        $records = $this->getByProjectId($id_project);
 
-        // Check if project exists
-        $project = $this->find($id_project);
-        if (!$project) {
-            $logMessage = "Project with ID {$id_project} not found.";
-            log_message('error', $logMessage);
+        if (empty($records)) {
+            log_message('error', "No records found for project ID {$id_project}.");
             return [
                 'success' => false,
-                'message' => $logMessage
-            ]; // Return the error message
+                'message' => 'No records found for the specified project.'
+            ];
         }
 
-        // Example: Recalculate man-hours
-        try {
-            // Fetch records for recalculating (assume function fetchManHours exists)
-            $man_hours = $this->fetchManHours($id_project);
-
-            if (!$man_hours) {
-                $logMessage = "Man-hour data not found for project ID {$id_project}.";
-                log_message('error', $logMessage);
+        // 2. Calculate total man-hour for man_hour_plan
+        $totalManHourPlan = 0;
+        foreach ($records as $record) {
+            if (isset($record['man_hour_plan'])) {
+                $totalManHourPlan += $record['man_hour_plan'];
+            } else {
+                log_message('error', "Missing man_hour_plan for record ID {$record['id']}.");
                 return [
                     'success' => false,
-                    'message' => $logMessage
-                ]; // Return the error message
+                    'message' => 'One or more records have missing man_hour_plan values.'
+                ];
             }
-
-            // Example: Update weight factors and other necessary fields (simplified)
-            foreach ($man_hours as $record) {
-                $new_weight_factor = $this->calculateWeightFactor($record);
-                $this->update($record['id'], ['weight_factor' => $new_weight_factor]);
-            }
-
-            // If everything goes well, return a success message
-            $logMessage = "Project processed successfully for ID {$id_project}.";
-            return [
-                'success' => true,
-                'message' => $logMessage
-            ];
-        } catch (\Exception $e) {
-            $logMessage = 'Error processing project: ' . $e->getMessage();
-            log_message('error', $logMessage);
-            return [
-                'success' => false,
-                'message' => $logMessage
-            ]; // Return the error message
         }
+
+        // 3. Prepare data for batch update
+        $updateData = [];
+        foreach ($records as $record) {
+            $newWeightFactor = $this->calculateWeightFactor($record['man_hour_plan'], $totalManHourPlan);
+            
+            // 4. Prepare each record update
+            $updateData[] = [
+                'id' => $record['id'],
+                'weight_factor' => $newWeightFactor
+            ];
+        }
+
+        // 5. Batch update records
+        foreach ($updateData as $data) {
+            $this->update($data['id'], [
+                'weight_factor' => $data['weight_factor']
+            ]);
+        }
+
+        return [
+            'success' => true,
+            'message' => 'Project man-hours and weight factors processed successfully.'
+        ]; // Process completed
     }
+
 
 
 
