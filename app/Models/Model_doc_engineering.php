@@ -1126,10 +1126,10 @@ class Model_doc_engineering extends Model
         // 2. Calculate total man-hour for man_hour_plan
         $totalManHourPlan = 0;
         foreach ($records as $record) {
-            if (isset($record['man_hour_plan'])) {
-                $totalManHourPlan += $record['man_hour_plan'];
+            if (isset($record->man_hour_plan)) { // Accessing the property as an object
+                $totalManHourPlan += $record->man_hour_plan; // Using -> instead of []
             } else {
-                log_message('error', "Missing man_hour_plan for record ID {$record['id']}.");
+                log_message('error', "Missing man_hour_plan for record ID {$record->id}."); // Accessing the property as an object
                 return [
                     'success' => false,
                     'message' => 'One or more records have missing man_hour_plan values.'
@@ -1140,11 +1140,11 @@ class Model_doc_engineering extends Model
         // 3. Prepare data for batch update
         $updateData = [];
         foreach ($records as $record) {
-            $newWeightFactor = $this->calculateWeightFactor($record['man_hour_plan'], $totalManHourPlan);
-            
+            $newWeightFactor = $this->calculateWeightFactor($record->man_hour_plan, $totalManHourPlan); // Using -> instead of []
+
             // 4. Prepare each record update
             $updateData[] = [
-                'id' => $record['id'],
+                'id' => $record->id, // Accessing the property as an object
                 'weight_factor' => $newWeightFactor
             ];
         }
@@ -1161,6 +1161,8 @@ class Model_doc_engineering extends Model
             'message' => 'Project man-hours and weight factors processed successfully.'
         ]; // Process completed
     }
+
+
 
 
 
