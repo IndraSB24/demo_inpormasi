@@ -152,7 +152,8 @@ class Project_detail_engineering extends BaseController
 			'list_doc_engineering' => $this->doc_engineering_model->get_all(sess('active_karyawan_id')),
             'data_weight' => $this->Model_data_helper->get_by_type('engineering_doc_weight'),
             'list_doc_dicipline' => $this->Model_data_helper->get_by_type('doc_dicipline_engineering'),
-            'doc_role' => $this->Model_karyawan_doc_role->get_by_id_karyawan(sess('active_user_id'))
+            'doc_role' => $this->Model_karyawan_doc_role->get_by_id_karyawan(sess('active_user_id')),
+            'id_project' => $project_id
 		];
         // echo '<pre>'; print_r( $data );die; echo '</pre>';
 		return view('document_engineering_detail', $data);
@@ -339,34 +340,50 @@ class Project_detail_engineering extends BaseController
         }
     }
 
-	public function add($kode=null){
-	    switch($kode){
-	        case 'doc_engineering':
-	            $data = [
-            		'level_code'    => $this->request->getPost('level_code'), 
-            		'description'   => $this->request->getPost('description'),
-            		'weight_factor' => $this->request->getPost('weight_factor'),
-            		'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
-            		'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
-            		'external_asbuild_plan'      => date_db_format($this->request->getPost('external_asbuild_plan')),
+	// add
+    public function add($kode = null)
+    {
+        switch ($kode) {
+            case 'doc_engineering':
+                // Collect data from the request
+                $data = [
+                    'level_code'    => $this->request->getPost('level_code'), 
+                    'description'   => $this->request->getPost('description'),
+                    'weight_factor' => $this->request->getPost('weight_factor'),
+                    'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
+                    'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
+                    'external_asbuild_plan' => date_db_format($this->request->getPost('external_asbuild_plan')),
                     'man_hour_plan' => $this->request->getPost('man_hour_plan'),
                     'id_doc_dicipline' => $this->request->getPost('discipline')
-            	];
-            	$this->doc_engineering_model->reset_increment();
-            	$this->doc_engineering_model->save($data);
-                $response = [
-                    'success' => false,
-                    'message' => 'No file specified.'
                 ];
-    
+
+                // Reset auto increment (if necessary)
+                $this->doc_engineering_model->reset_increment();
+
+                // Save the new record
+                $this->doc_engineering_model->save($data);
+
+                // Get the id_project (you need to pass this, adjust according to your actual implementation)
+                $id_project = $this->request->getPost('idProject');
+
+                // Recalculate man-hours and update weight factor
+                $this->doc_engineering_model->processProject($id_project);
+
+                // Return a response
+                $response = [
+                    'success' => true,
+                    'message' => 'Data added and project processed successfully.'
+                ];
+
                 return json_encode($response);
-	        break;
-	    }
+                break;
+        }
     }
+
 
     // function to count dynamic wf
     function recountWF() {
-        
+
     }
     
     public function delete($id_project){

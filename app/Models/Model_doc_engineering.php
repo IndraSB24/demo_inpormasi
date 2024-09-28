@@ -1049,7 +1049,6 @@ class Model_doc_engineering extends Model
         return $result ? $result->week_number : null;
     }
     
-
     // get percent progress by dicipline
     public function getProgressByDicipline($idProject = 1) {
         $currentDate = date('Y-m-d');
@@ -1093,5 +1092,53 @@ class Model_doc_engineering extends Model
     }
     
 
+    // Get all records by id_project
+    public function getByProjectId($id_project)
+    {
+        return $this->where('id_project', $id_project)->findAll();
+    }
+
+    // Helper function to calculate the weight factor based on man_hour_plan
+    private function calculateWeightFactor($manHourPlan, $totalManHourPlan)
+    {
+        // Prevent division by zero
+        if ($totalManHourPlan == 0) {
+            return 0;
+        }
+
+        // Calculate the weight factor as a percentage
+        return ($manHourPlan / $totalManHourPlan) * 100;
+    }
+
+    // Calculate total man-hour plan and recalculate WF
+    public function processProject($id_project)
+    {
+        // 1. Get all records by id_project
+        $records = $this->getByProjectId($id_project);
+
+        if (empty($records)) {
+            return false; // No records found for the given id_project
+        }
+
+        // 2. Calculate total man-hour for man_hour_plan
+        $totalManHourPlan = 0;
+        foreach ($records as $record) {
+            $totalManHourPlan += $record['man_hour_plan'];
+        }
+
+        // 3. Recalculate WF (weight_factor) for each record based only on man_hour_plan
+        foreach ($records as $record) {
+            $newWeightFactor = $this->calculateWeightFactor($record['man_hour_plan'], $totalManHourPlan);
+            
+            // 4. Update each record with the new WF
+            $this->update($record['id'], [
+                'weight_factor' => $newWeightFactor
+            ]);
+        }
+
+        return true; // Process completed
+    }
+
+    
 
 }

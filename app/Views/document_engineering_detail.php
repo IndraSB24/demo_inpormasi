@@ -1147,6 +1147,7 @@ function generateWaitingBadge()
                         </div>
                     </div>
                 </div>
+                <!-- modal_add buttons -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data">
@@ -1364,6 +1365,8 @@ function generateWaitingBadge()
 <script>
     console.log(<?= json_encode($list_doc_engineering) ?>, 'LIST DOC');
     console.log(<?= json_encode(sess('active_karyawan_id')) ?>, 'SESSION DATA');
+
+    const idProject = <?= json_encode($id_project) ?>
     // btn simpan document
     // ==========================================================================================================================================================================
     $(document).on('click', '#btn-simpan-doc', function() {
@@ -1397,7 +1400,7 @@ function generateWaitingBadge()
                         plan_ifa: plan_ifa,
                         plan_ifc: plan_ifc,
                         man_hour_plan: man_hour_plan,
-
+                        idProject: idProject
                     },
                     success: () => {
                         Swal.fire({
