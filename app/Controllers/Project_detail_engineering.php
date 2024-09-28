@@ -386,12 +386,13 @@ class Project_detail_engineering extends BaseController
                     $data = [
                         'level_code'    => $this->request->getPost('level_code'), 
                         'description'   => $this->request->getPost('description'),
-                        'weight_factor' => $this->request->getPost('weight_factor'),
+                        // 'weight_factor' => $this->request->getPost('weight_factor'),
                         'plan_ifa'      => date_db_format($this->request->getPost('plan_ifa')),
                         'plan_ifc'      => date_db_format($this->request->getPost('plan_ifc')),
                         'external_asbuild_plan' => date_db_format($this->request->getPost('external_asbuild_plan')),
                         'man_hour_plan' => $this->request->getPost('man_hour_plan'),
-                        'id_doc_dicipline' => $this->request->getPost('discipline')
+                        'id_doc_dicipline' => $this->request->getPost('discipline'),
+                        'id_project' => $this->request->getPost('idProject')
                     ];
 
                     // Check if the essential data is present

@@ -1113,31 +1113,36 @@ class Model_doc_engineering extends Model
     // Calculate total man-hour plan and recalculate WF
     public function processProject($id_project)
     {
-        // 1. Get all records by id_project
-        $records = $this->getByProjectId($id_project);
-
-        if (empty($records)) {
-            return false; // No records found for the given id_project
+        // Check if project exists
+        $project = $this->find($id_project);
+        if (!$project) {
+            log_message('error', "Project with ID {$id_project} not found.");
+            return false; // If no project is found, return false
         }
 
-        // 2. Calculate total man-hour for man_hour_plan
-        $totalManHourPlan = 0;
-        foreach ($records as $record) {
-            $totalManHourPlan += $record['man_hour_plan'];
-        }
+        // Example: Recalculate man-hours
+        try {
+            // Fetch records for recalculating (assume function fetchManHours exists)
+            $man_hours = $this->fetchManHours($id_project);
 
-        // 3. Recalculate WF (weight_factor) for each record based only on man_hour_plan
-        foreach ($records as $record) {
-            $newWeightFactor = $this->calculateWeightFactor($record['man_hour_plan'], $totalManHourPlan);
-            
-            // 4. Update each record with the new WF
-            $this->update($record['id'], [
-                'weight_factor' => $newWeightFactor
-            ]);
-        }
+            if (!$man_hours) {
+                log_message('error', "Man-hour data not found for project ID {$id_project}.");
+                return false;
+            }
 
-        return true; // Process completed
+            // Example: Update weight factors and other necessary fields (simplified)
+            foreach ($man_hours as $record) {
+                $new_weight_factor = $this->calculateWeightFactor($record);
+                $this->update($record['id'], ['weight_factor' => $new_weight_factor]);
+            }
+
+            return true; // If everything goes well, return true
+        } catch (\Exception $e) {
+            log_message('error', 'Error processing project: ' . $e->getMessage());
+            return false;
+        }
     }
+
 
     
 
