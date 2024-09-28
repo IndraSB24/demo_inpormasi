@@ -1113,11 +1113,18 @@ class Model_doc_engineering extends Model
     // Calculate total man-hour plan and recalculate WF
     public function processProject($id_project)
     {
+        // Initialize log message
+        $logMessage = '';
+
         // Check if project exists
         $project = $this->find($id_project);
         if (!$project) {
-            log_message('error', "Project with ID {$id_project} not found.");
-            return false; // If no project is found, return false
+            $logMessage = "Project with ID {$id_project} not found.";
+            log_message('error', $logMessage);
+            return [
+                'success' => false,
+                'message' => $logMessage
+            ]; // Return the error message
         }
 
         // Example: Recalculate man-hours
@@ -1126,8 +1133,12 @@ class Model_doc_engineering extends Model
             $man_hours = $this->fetchManHours($id_project);
 
             if (!$man_hours) {
-                log_message('error', "Man-hour data not found for project ID {$id_project}.");
-                return false;
+                $logMessage = "Man-hour data not found for project ID {$id_project}.";
+                log_message('error', $logMessage);
+                return [
+                    'success' => false,
+                    'message' => $logMessage
+                ]; // Return the error message
             }
 
             // Example: Update weight factors and other necessary fields (simplified)
@@ -1136,12 +1147,22 @@ class Model_doc_engineering extends Model
                 $this->update($record['id'], ['weight_factor' => $new_weight_factor]);
             }
 
-            return true; // If everything goes well, return true
+            // If everything goes well, return a success message
+            $logMessage = "Project processed successfully for ID {$id_project}.";
+            return [
+                'success' => true,
+                'message' => $logMessage
+            ];
         } catch (\Exception $e) {
-            log_message('error', 'Error processing project: ' . $e->getMessage());
-            return false;
+            $logMessage = 'Error processing project: ' . $e->getMessage();
+            log_message('error', $logMessage);
+            return [
+                'success' => false,
+                'message' => $logMessage
+            ]; // Return the error message
         }
     }
+
 
 
     
