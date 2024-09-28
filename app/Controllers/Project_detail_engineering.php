@@ -359,9 +359,14 @@ class Project_detail_engineering extends BaseController
                     'message' => 'No file specified.'
                 ];
     
-            return json_encode($response);
+                return json_encode($response);
 	        break;
 	    }
+    }
+
+    // function to count dynamic wf
+    function recountWF() {
+        
     }
     
     public function delete($id_project){

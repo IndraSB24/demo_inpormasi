@@ -1103,13 +1103,23 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
                         </div>
                         <div class="col-md-6">
                             <label for="plan_man_hour" class="form-label">Plan Man Hour</label>
                             <input type="number" class="form-control" name="plan_man_hour" id="plan_man_hour" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Plan Man Hour Start</label>
+                            <div class="input-group" id="man_hour_date">
+                                <input type="text" class="form-control" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" 
+                                    data-date-container="#man_hour_date" data-provide="datepicker" name="plan_man_hour_start" 
+                                    id="plan_man_hour_start" 
+                                />
+                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-4">
