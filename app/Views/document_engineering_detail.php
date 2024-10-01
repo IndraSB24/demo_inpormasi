@@ -457,10 +457,10 @@ function generateWaitingBadge()
                                             <table id="scroll-vertical-datatable" class="table table-bordered nowrap" style="border: 0px;">
                                                 <thead>
                                                     <tr>
-                                                        <th rowspan="4" style="background-color: #b0cbf7;">NO</th>
-                                                        <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
-                                                        <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
-                                                        <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
+                                                        <th rowspan="3" style="background-color: #b0cbf7;">NO</th>
+                                                        <th rowspan="3" style="background-color: #b0cbf7;">WBS CODE</th>
+                                                        <th rowspan="3" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
+                                                        <th rowspan="3" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
                                                         <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
                                                         <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                         <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
