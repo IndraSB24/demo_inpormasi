@@ -481,14 +481,22 @@ function generateWaitingBadge()
                                                     </tr>
                                                     <tr>
                                                         <!-- <th class="text-center" style="background-color:#d2fad2">IFR</th> -->
-                                                        <th class="text-center" style="background-color:#d2fad2">IFA</th>
+                                                        <!-- <th class="text-center" style="background-color:#d2fad2">IFA</th>
                                                         <th class="text-center" style="background-color:#d2fad2">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#d2fad2">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th> -->
+                                                        <th class="text-center" style="background-color:#d2fad2">IFR</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFA</th>
+                                                        <th class="text-center" style="background-color:#d2fad2">IFC</th>
                                                         <th class="text-center" style="background-color:#d2fad2">CUMMULATIVE</th>
                                                         <!-- <th class="text-center" style="background-color:#c1f5d9">IFR</th> -->
-                                                        <th class="text-center" style="background-color:#c1f5d9">IFA</th>
+                                                        <!-- <th class="text-center" style="background-color:#c1f5d9">IFA</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">IFC /IFP</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">FINAL RESULT/ ASBUILD</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th> -->
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFR</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFA</th>
+                                                        <th class="text-center" style="background-color:#c1f5d9">IFC</th>
                                                         <th class="text-center" style="background-color:#c1f5d9">CUMMULATIVE</th>
                                                     </tr>
                                                     <tr>
