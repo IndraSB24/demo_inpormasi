@@ -466,6 +466,9 @@ function generateWaitingBadge()
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                         <!-- <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th> -->
                                                         <!-- <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th> -->
+                                                        <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
+                                                        <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                     </tr>
@@ -474,10 +477,9 @@ function generateWaitingBadge()
                                                         <th rowspan="3" style="background-color:blanchedalmond">ENGINER PP</th>
                                                         <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
                                                         <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th> -->
-                                                        <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
+                                                        <!-- <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
                                                         <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
-                                                        <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
-
+                                                        <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th> -->
                                                     </tr>
                                                     <tr>
                                                         <!-- <th class="text-center" style="background-color:#d2fad2">IFR</th> -->
@@ -1004,10 +1006,12 @@ function generateWaitingBadge()
                                                                 <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
                                                                 <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
                                                                 <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
-                                                                <!-- <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
+                                                                <!-- 
+                                                                <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
                                                                 <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
                                                                 <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
-                                                                <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td> -->
+                                                                <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td> 
+                                                                -->
                                                                 <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
                                                                 <!-- <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td> -->
                                                                 <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
