@@ -465,7 +465,7 @@ function generateWaitingBadge()
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                         <!-- <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th> -->
-                                                        <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
+                                                        <!-- <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th> -->
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                     </tr>
