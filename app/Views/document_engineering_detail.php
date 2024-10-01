@@ -461,16 +461,16 @@ function generateWaitingBadge()
                                                         <th rowspan="4" style="background-color: #b0cbf7;">WBS CODE</th>
                                                         <th rowspan="4" style="background-color: #b0cbf7;position:sticky;left:0;z-index: 100">DOCUMENT NUMBER</th>
                                                         <th rowspan="4" style="background-color: #b0cbf7;">DOCUMENT DICIPLINE</th>
-                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
-                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
-                                                        <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
+                                                        <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
+                                                        <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
+                                                        <th class="desc" rowspan="3" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
                                                         <!-- <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th> -->
                                                         <!-- <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th> -->
                                                         <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
                                                         <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
                                                         <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
-                                                        <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
-                                                        <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
+                                                        <th rowspan="3" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
+                                                        <th rowspan="3" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                     </tr>
                                                     <tr>
                                                         <!-- <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
