@@ -450,14 +450,6 @@ class Project_detail_engineering extends BaseController
         }
     }
     
-
-
-
-    // function to count dynamic wf
-    function recountWF() {
-
-    }
-    
     public function delete($id_project){
         $this->doc_engineering_model->delete($id_project); 
     }

@@ -464,17 +464,16 @@ function generateWaitingBadge()
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;position:sticky;left:13em;z-index: 100">DESCRIPTION</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR PLAN</th>
                                                         <th class="desc" rowspan="4" style="width: 0px;background-color: #b0cbf7;">MANHOUR ACTUAL</th>
-                                                        <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th>
+                                                        <!-- <th colspan="4" class="text-center" style="background-color:#fad8a2">INTERNAL</th> -->
                                                         <th colspan="9" class="text-center" style="background-color:#9dc9ae">EXTERNAL</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">STATUS</th>
                                                         <th rowspan="4" class="text-center" style="background-color: #b0cbf7;">ACTION</th>
                                                     </tr>
                                                     <tr>
-
-                                                        <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
+                                                        <!-- <th rowspan="3" style="background-color:blanchedalmond">JEDHI TEKNIKA</th>
                                                         <th rowspan="3" style="background-color:blanchedalmond">ENGINER PP</th>
                                                         <th rowspan="3" style="background-color:blanchedalmond">HO PP</th>
-                                                        <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th>
+                                                        <th rowspan="3" style="background-color:blanchedalmond">PEM PP</th> -->
                                                         <th rowspan="3" style="background-color:#d3f5b0">WEIGHT FACTOR</th>
                                                         <th colspan="4" class="text-center" style="background-color:#b0f5b0">PLAN</th>
                                                         <th colspan="4" class="text-center" style="background-color:#a0faca">ACTUAL</th>
@@ -508,182 +507,255 @@ function generateWaitingBadge()
 
                                                 <tbody>
                                                     <?php
-                                                    $week = 0;
-                                                    $weekPlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    $weekActual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                                                    $weekDates = [
-                                                        '15-6-2023',
-                                                        '22-6-2023',
-                                                        '29-6-2023',
-                                                        '6-7-2023',
-                                                        '13-7-2023',
-                                                        '20-7-2023',
-                                                        '27-7-2023',
-                                                        '3-8-2023',
-                                                        '10-8-2023',
-                                                        '17-8-2023',
-                                                        '24-8-2023',
-                                                        '31-9-2023'
-                                                    ];
-                                                    $WF_IFR = 0.5;
-                                                    $WF_IFA = 0.4;
-                                                    $WF_IFC = 0.1;
-                                                    $no = 0;
-                                                    foreach ($list_doc_engineering as $row) :
-                                                        $no++;
-                                                        for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->plan_ifr);
-                                                            $targetDate = world_date($weekDates[$i]);
-
-                                                            if ($date <= $targetDate) {
-                                                                $weekPlan[$i] += $WF_IFR * $row->weight_factor;
-                                                                break; // Exit the loop
-                                                            }
-                                                        }
-
-                                                        for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->plan_ifa);
-                                                            $targetDate = world_date($weekDates[$i]);
-
-                                                            if ($date <= $targetDate) {
-                                                                $weekPlan[$i] += $WF_IFA * $row->weight_factor;
-                                                                break; // Exit the loop
-                                                            }
-                                                        }
-
-                                                        for ($i = 0; $i < count($weekDates); $i++) {
-                                                            $date = world_date($row->plan_ifc);
-                                                            $targetDate = world_date($weekDates[$i]);
-
-                                                            if ($date <= $targetDate) {
-                                                                $weekPlan[$i] += $WF_IFC * $row->weight_factor;
-                                                                break; // Exit the loop
-                                                            }
-                                                        }
-
-                                                        // set plan cumulative
-                                                        $plan_cumulative = 0;
-                                                        if (world_date($row->plan_ifr) <= date_now()) {
-                                                            $plan_cumulative += $WF_IFR * $row->weight_factor;
-                                                        }
-                                                        if (world_date($row->plan_ifa) <= date_now()) {
-                                                            $plan_cumulative += $WF_IFA * $row->weight_factor;
-                                                        }
-                                                        if (world_date($row->plan_ifc) <= date_now()) {
-                                                            $plan_cumulative += $WF_IFC * $row->weight_factor;
-                                                        }
-
-                                                        // set actual cumulative
-                                                        $actual_cumulative = 0;
-                                                        if ($row->actual_ifr) {
-                                                            $actual_cumulative += $WF_IFR * $row->weight_factor;
-
+                                                        $week = 0;
+                                                        $weekPlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                        $weekActual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                                                        $weekDates = [
+                                                            '15-6-2023',
+                                                            '22-6-2023',
+                                                            '29-6-2023',
+                                                            '6-7-2023',
+                                                            '13-7-2023',
+                                                            '20-7-2023',
+                                                            '27-7-2023',
+                                                            '3-8-2023',
+                                                            '10-8-2023',
+                                                            '17-8-2023',
+                                                            '24-8-2023',
+                                                            '31-9-2023'
+                                                        ];
+                                                        $WF_IFR = 0.5;
+                                                        $WF_IFA = 0.4;
+                                                        $WF_IFC = 0.1;
+                                                        $no = 0;
+                                                        foreach ($list_doc_engineering as $row) :
+                                                            $no++;
                                                             for ($i = 0; $i < count($weekDates); $i++) {
-                                                                $date = world_date($row->actual_ifr);
+                                                                $date = world_date($row->plan_ifr);
                                                                 $targetDate = world_date($weekDates[$i]);
 
                                                                 if ($date <= $targetDate) {
-                                                                    $weekActual[$i] += $WF_IFR * $row->weight_factor;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }
-                                                        if ($row->actual_ifa) {
-                                                            $actual_cumulative += $WF_IFA * $row->weight_factor;
-
-                                                            for ($i = 0; $i < count($weekDates); $i++) {
-                                                                $date = world_date($row->actual_ifa);
-                                                                $targetDate = world_date($weekDates[$i]);
-
-                                                                if ($date <= $targetDate) {
-                                                                    $weekActual[$i] += $WF_IFA * $row->weight_factor;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        }
-                                                        if ($row->actual_ifc) {
-                                                            $actual_cumulative += $WF_IFC * $row->weight_factor;
-
-                                                            for ($i = 0; $i < count($weekDates); $i++) {
-                                                                $date = world_date($row->actual_ifc);
-                                                                $targetDate = world_date($weekDates[$i]);
-
-                                                                if ($date <= $targetDate) {
-                                                                    $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                    $weekPlan[$i] += $WF_IFR * $row->weight_factor;
                                                                     break; // Exit the loop
                                                                 }
                                                             }
-                                                        }
 
-                                                        // set variance status
-                                                        if ($actual_cumulative == $plan_cumulative) {
-                                                            $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
-                                                        } else if ($actual_cumulative > $plan_cumulative) {
-                                                            $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
-                                                        } else {
-                                                            $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
-                                                        }
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->plan_ifa);
+                                                                $targetDate = world_date($weekDates[$i]);
 
+                                                                if ($date <= $targetDate) {
+                                                                    $weekPlan[$i] += $WF_IFA * $row->weight_factor;
+                                                                    break; // Exit the loop
+                                                                }
+                                                            }
 
-                                                        // internal section
-                                                        $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
-                                                        $file_version = $row->file_version ? $row->file_version : 'nothing';
-                                                        if ($row->has_access === '1' || $row->has_access === '2' || sessActiveRole() == 'super_admin') {
-                                                            if ($row->internal_originator_status === 'uploaded') {
-                                                                $actual_JEDHI = tgl_indo($row->internal_originator_date) .
-                                                                    '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFR"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;DETAIL&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else if ($row->internal_originator_status === 'progress') {
-                                                                $actual_JEDHI = '
-                                                                    no date yet
-                                                                <br>
-                                                                    no file yet
-                                                                <br>
-                                                                <a href=' . base_url('reupload/') . '/' . $row->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-path = "Project_detail_engineering/update/up_originator"
-                                                                        data-step = ""
-                                                                        data-version = "' . $file_version . '"
-                                                                        data-doc_code = "' . $row->level_code . '"
-                                                                        data-doc_name = "' . $row->description . '"
-                                                                    >
-                                                                        &nbsp;REUPLOAD&nbsp;
-                                                                    </a>
-                                                                ';
+                                                            for ($i = 0; $i < count($weekDates); $i++) {
+                                                                $date = world_date($row->plan_ifc);
+                                                                $targetDate = world_date($weekDates[$i]);
+
+                                                                if ($date <= $targetDate) {
+                                                                    $weekPlan[$i] += $WF_IFC * $row->weight_factor;
+                                                                    break; // Exit the loop
+                                                                }
+                                                            }
+
+                                                            // set plan cumulative
+                                                            $plan_cumulative = 0;
+                                                            if (world_date($row->plan_ifr) <= date_now()) {
+                                                                $plan_cumulative += $WF_IFR * $row->weight_factor;
+                                                            }
+                                                            if (world_date($row->plan_ifa) <= date_now()) {
+                                                                $plan_cumulative += $WF_IFA * $row->weight_factor;
+                                                            }
+                                                            if (world_date($row->plan_ifc) <= date_now()) {
+                                                                $plan_cumulative += $WF_IFC * $row->weight_factor;
+                                                            }
+
+                                                            // set actual cumulative
+                                                            $actual_cumulative = 0;
+                                                            if ($row->actual_ifr) {
+                                                                $actual_cumulative += $WF_IFR * $row->weight_factor;
+
+                                                                for ($i = 0; $i < count($weekDates); $i++) {
+                                                                    $date = world_date($row->actual_ifr);
+                                                                    $targetDate = world_date($weekDates[$i]);
+
+                                                                    if ($date <= $targetDate) {
+                                                                        $weekActual[$i] += $WF_IFR * $row->weight_factor;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if ($row->actual_ifa) {
+                                                                $actual_cumulative += $WF_IFA * $row->weight_factor;
+
+                                                                for ($i = 0; $i < count($weekDates); $i++) {
+                                                                    $date = world_date($row->actual_ifa);
+                                                                    $targetDate = world_date($weekDates[$i]);
+
+                                                                    if ($date <= $targetDate) {
+                                                                        $weekActual[$i] += $WF_IFA * $row->weight_factor;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if ($row->actual_ifc) {
+                                                                $actual_cumulative += $WF_IFC * $row->weight_factor;
+
+                                                                for ($i = 0; $i < count($weekDates); $i++) {
+                                                                    $date = world_date($row->actual_ifc);
+                                                                    $targetDate = world_date($weekDates[$i]);
+
+                                                                    if ($date <= $targetDate) {
+                                                                        $weekActual[$i] += $WF_IFC * $row->weight_factor;
+                                                                        break; // Exit the loop
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            // set variance status
+                                                            if ($actual_cumulative == $plan_cumulative) {
+                                                                $status = '<span class="badge bg-success p-2 w-xs">ON TRACK</span>';
+                                                            } else if ($actual_cumulative > $plan_cumulative) {
+                                                                $status = '<span class="badge bg-info p-2 w-xs">AHEAD</span>';
+                                                            } else {
+                                                                $status = '<span class="badge bg-danger p-2 w-xs">LATE</span>';
+                                                            }
+
+                                                            // internal section
+                                                            $linkFile = base_url('upload/engineering_doc/list/' . $row->file);
+                                                            $file_version = $row->file_version ? $row->file_version : 'nothing';
+                                                            if ($row->has_access === '1' || $row->has_access === '2' || sessActiveRole() == 'super_admin') {
+                                                                if ($row->internal_originator_status === 'uploaded') {
+                                                                    $actual_JEDHI = tgl_indo($row->internal_originator_date) .
+                                                                        '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs"
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFR"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;DETAIL&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_originator_status === 'progress') {
+                                                                    $actual_JEDHI = '
+                                                                        no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                    <a href=' . base_url('reupload/') . '/' . $row->id  . ' class="badge bg-warning mt-1 p-2 w-xs"
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-path = "Project_detail_engineering/update/up_originator"
+                                                                            data-step = ""
+                                                                            data-version = "' . $file_version . '"
+                                                                            data-doc_code = "' . $row->level_code . '"
+                                                                            data-doc_name = "' . $row->description . '"
+                                                                        >
+                                                                            &nbsp;REUPLOAD&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else {
+                                                                    $actual_JEDHI = '
+                                                                        no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                        <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-path = "Project_detail_engineering/update/up_originator"
+                                                                            data-step = ""
+                                                                            data-version = "' . $file_version . '"
+                                                                            data-doc_code = "' . $row->level_code . '"
+                                                                            data-doc_name = "' . $row->description . '"
+                                                                        >
+                                                                            &nbsp;UP FILE&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                }
                                                             } else {
                                                                 $actual_JEDHI = '
-                                                                    no date yet
-                                                                <br>
-                                                                    no file yet
-                                                                <br>
-                                                                    <a href="#" class="badge bg-warning mt-1 p-2 w-xs" id="btn-upload-file" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-path = "Project_detail_engineering/update/up_originator"
-                                                                        data-step = ""
-                                                                        data-version = "' . $file_version . '"
-                                                                        data-doc_code = "' . $row->level_code . '"
-                                                                        data-doc_name = "' . $row->description . '"
-                                                                    >
-                                                                        &nbsp;UP FILE&nbsp;
-                                                                    </a>
-                                                                ';
+                                                                        no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                        <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-path = "Project_detail_engineering/update/up_originator"
+                                                                            data-step = ""
+                                                                            data-version = "' . $file_version . '"
+                                                                            data-doc_code = "' . $row->level_code . '"
+                                                                            data-doc_name = "' . $row->description . '"
+                                                                        >
+                                                                            &nbsp;NO ACCESS&nbsp;
+                                                                        </a>
+                                                                    ';
                                                             }
-                                                        } else {
-                                                            $actual_JEDHI = '
+
+                                                            if ($row->has_access === '2' || sessActiveRole() == 'super_admin') {
+                                                                if ($row->internal_engineering_status === 'approve') {
+                                                                    $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;APPROVED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_engineering_status === 'reject') {
+                                                                    $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;REJECTED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_engineering_status === 'progress') {
+                                                                    $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;DETAIL&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else {
+                                                                    $enginerPP = '
                                                                     no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                        <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                            &nbsp;WAITING&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                }
+                                                            } else {
+                                                                $enginerPP = '
+                                                                no date yet
                                                                 <br>
                                                                     no file yet
                                                                 <br>
@@ -699,53 +771,176 @@ function generateWaitingBadge()
                                                                         &nbsp;NO ACCESS&nbsp;
                                                                     </a>
                                                                 ';
-                                                        }
+                                                            }
 
-                                                        if ($row->has_access === '2' || sessActiveRole() == 'super_admin') {
-                                                            if ($row->internal_engineering_status === 'approve') {
-                                                                $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                            if ($row->has_access === '3' || sessActiveRole() == 'super_admin') {
+                                                                if ($row->internal_ho_status === 'approve') {
+                                                                    $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;APPROVED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_ho_status === 'reject') {
+                                                                    $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;REJECTED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_ho_status === 'progress') {
+                                                                    $hoPP = tgl_indo($row->internal_ho_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;DETAIL&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else {
+                                                                    $hoPP = '
+                                                                        no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                        <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                            &nbsp;WAITING&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                }
+                                                            } else {
+                                                                $hoPP = '
+                                                                no date yet
                                                                 <br>
+                                                                    no file yet
                                                                 <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                         data-id="' . $row->id . '"
                                                                         data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
+                                                                        data-path = "Project_detail_engineering/update/up_originator"
+                                                                        data-step = ""
                                                                         data-version = "' . $file_version . '"
+                                                                        data-doc_code = "' . $row->level_code . '"
+                                                                        data-doc_name = "' . $row->description . '"
                                                                     >
-                                                                        &nbsp;APPROVED&nbsp;
+                                                                        &nbsp;NO ACCESS&nbsp;
                                                                     </a>
                                                                 ';
-                                                            } else if ($row->internal_engineering_status === 'reject') {
-                                                                $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                            }
+
+                                                            if ($row->has_access === '4' || sessActiveRole() == 'super_admin') {
+                                                                if ($row->internal_pem_status === 'approve') {
+                                                                    $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;APPROVED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_pem_status === 'reject') {
+                                                                    $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;REJECTED&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else if ($row->internal_pem_status === 'progress') {
+                                                                    $pemPP = tgl_indo($row->internal_pem_date) . '
+                                                                    <br>
+                                                                    <br>
+                                                                        <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                            data-id="' . $row->id . '"
+                                                                            data-doc_desc="' . $row->description . '"
+                                                                            data-link_file = "' . $linkFile . '"
+                                                                            data-step = "IFA"
+                                                                            data-version = "' . $file_version . '"
+                                                                        >
+                                                                            &nbsp;DETAIL&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                } else {
+                                                                    $pemPP = '
+                                                                        no date yet
+                                                                    <br>
+                                                                        no file yet
+                                                                    <br>
+                                                                        <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
+                                                                            &nbsp;WAITING&nbsp;
+                                                                        </a>
+                                                                    ';
+                                                                }
+                                                            } else {
+                                                                $pemPP = '
+                                                                no date yet
                                                                 <br>
+                                                                    no file yet
                                                                 <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
                                                                         data-id="' . $row->id . '"
                                                                         data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
+                                                                        data-path = "Project_detail_engineering/update/up_originator"
+                                                                        data-step = ""
                                                                         data-version = "' . $file_version . '"
+                                                                        data-doc_code = "' . $row->level_code . '"
+                                                                        data-doc_name = "' . $row->description . '"
                                                                     >
-                                                                        &nbsp;REJECTED&nbsp;
+                                                                        &nbsp;NO ACCESS&nbsp;
                                                                     </a>
                                                                 ';
-                                                            } else if ($row->internal_engineering_status === 'progress') {
-                                                                $enginerPP = tgl_indo($row->internal_engineering_date) . '
+                                                            }
+                                                            // end internal section
+
+                                                            // set actual IFR status
+                                                            if ($row->actual_ifr) {
+                                                                $actual_ifr = tgl_indo($row->actual_ifr) .
+                                                                    '
                                                                 <br>
+                                                                    Issued V ' . $row->file_version . '
                                                                 <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_engineering' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
+                                                                    <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
                                                                         data-id="' . $row->id . '"
                                                                         data-doc_desc="' . $row->description . '"
                                                                         data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
+                                                                        data-step = "IFR"
                                                                         data-version = "' . $file_version . '"
                                                                     >
                                                                         &nbsp;DETAIL&nbsp;
                                                                     </a>
                                                                 ';
                                                             } else {
-                                                                $enginerPP = '
+                                                                $actual_ifr = '
                                                                 no date yet
                                                                 <br>
                                                                     no file yet
@@ -755,293 +950,96 @@ function generateWaitingBadge()
                                                                     </a>
                                                                 ';
                                                             }
-                                                        } else {
-                                                            $enginerPP = '
-                                                            no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
-                                                                    data-id="' . $row->id . '"
-                                                                    data-doc_desc="' . $row->description . '"
-                                                                    data-path = "Project_detail_engineering/update/up_originator"
-                                                                    data-step = ""
-                                                                    data-version = "' . $file_version . '"
-                                                                    data-doc_code = "' . $row->level_code . '"
-                                                                    data-doc_name = "' . $row->description . '"
-                                                                >
-                                                                    &nbsp;NO ACCESS&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
 
-                                                        if ($row->has_access === '3' || sessActiveRole() == 'super_admin') {
-                                                            if ($row->internal_ho_status === 'approve') {
-                                                                $hoPP = tgl_indo($row->internal_ho_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho/preview/' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;APPROVED&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else if ($row->internal_ho_status === 'reject') {
-                                                                $hoPP = tgl_indo($row->internal_ho_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;REJECTED&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else if ($row->internal_ho_status === 'progress') {
-                                                                $hoPP = tgl_indo($row->internal_ho_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_ho' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;DETAIL&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else {
-                                                                $hoPP = '
-                                                                    no date yet
-                                                                <br>
-                                                                    no file yet
-                                                                <br>
-                                                                    <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                        &nbsp;WAITING&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            }
-                                                        } else {
-                                                            $hoPP = '
-                                                            no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
-                                                                    data-id="' . $row->id . '"
-                                                                    data-doc_desc="' . $row->description . '"
-                                                                    data-path = "Project_detail_engineering/update/up_originator"
-                                                                    data-step = ""
-                                                                    data-version = "' . $file_version . '"
-                                                                    data-doc_code = "' . $row->level_code . '"
-                                                                    data-doc_name = "' . $row->description . '"
-                                                                >
-                                                                    &nbsp;NO ACCESS&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
+                                                            // set actual IFA status
+                                                            $actual_ifa = generateStatusBadge(
+                                                                $row->actual_ifa_status,
+                                                                $row->actual_ifa,
+                                                                $row->id,
+                                                                $row->description,
+                                                                $linkFile,
+                                                                'IFA',
+                                                                $row->ifa_version,
+                                                                'external_ifa',
+                                                                'IFA Version: ' . $row->ifa_version
+                                                            );
+                                                            $actual_AsBuild = generateStatusBadge(
+                                                                $row->external_asbuild_status,
+                                                                $row->external_asbuild_actual,
+                                                                $row->id,
+                                                                $row->description,
+                                                                $linkFile,
+                                                                'AsBuild',
+                                                                $file_version,
+                                                                'external_asbuild',
+                                                                'version ' . $file_version
+                                                            );
 
-                                                        if ($row->has_access === '4' || sessActiveRole() == 'super_admin') {
-                                                            if ($row->internal_pem_status === 'approve') {
-                                                                $pemPP = tgl_indo($row->internal_pem_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-success mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;APPROVED&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else if ($row->internal_pem_status === 'reject') {
-                                                                $pemPP = tgl_indo($row->internal_pem_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem/preview' . ' class="badge bg-danger mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;REJECTED&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else if ($row->internal_pem_status === 'progress') {
-                                                                $pemPP = tgl_indo($row->internal_pem_date) . '
-                                                                <br>
-                                                                <br>
-                                                                    <a href=' . base_url('commentPdf/') . '/' . $row->id . '/internal_pem' . ' class="badge bg-info mt-1 p-2 w-xs" id="btn-approval" 
-                                                                        data-id="' . $row->id . '"
-                                                                        data-doc_desc="' . $row->description . '"
-                                                                        data-link_file = "' . $linkFile . '"
-                                                                        data-step = "IFA"
-                                                                        data-version = "' . $file_version . '"
-                                                                    >
-                                                                        &nbsp;DETAIL&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            } else {
-                                                                $pemPP = '
-                                                                    no date yet
-                                                                <br>
-                                                                    no file yet
-                                                                <br>
-                                                                    <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                        &nbsp;WAITING&nbsp;
-                                                                    </a>
-                                                                ';
-                                                            }
-                                                        } else {
-                                                            $pemPP = '
-                                                            no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:noAccessSwal();" class="badge bg-secondary mt-1 p-2 w-xs"
-                                                                    data-id="' . $row->id . '"
-                                                                    data-doc_desc="' . $row->description . '"
-                                                                    data-path = "Project_detail_engineering/update/up_originator"
-                                                                    data-step = ""
-                                                                    data-version = "' . $file_version . '"
-                                                                    data-doc_code = "' . $row->level_code . '"
-                                                                    data-doc_name = "' . $row->description . '"
-                                                                >
-                                                                    &nbsp;NO ACCESS&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-                                                        // end internal section
-
-                                                        // set actual IFR status
-                                                        if ($row->actual_ifr) {
-                                                            $actual_ifr = tgl_indo($row->actual_ifr) .
-                                                                '
-                                                            <br>
-                                                                Issued V ' . $row->file_version . '
-                                                            <br>
-                                                                <a href="#" class="badge bg-success mt-1 p-2 w-xs" id="btn-check-approved" 
-                                                                    data-id="' . $row->id . '"
-                                                                    data-doc_desc="' . $row->description . '"
-                                                                    data-link_file = "' . $linkFile . '"
-                                                                    data-step = "IFR"
-                                                                    data-version = "' . $file_version . '"
-                                                                >
-                                                                    &nbsp;DETAIL&nbsp;
-                                                                </a>
-                                                            ';
-                                                        } else {
-                                                            $actual_ifr = '
-                                                            no date yet
-                                                            <br>
-                                                                no file yet
-                                                            <br>
-                                                                <a href="javascript:waitingSwal();" class="badge bg-warning mt-1 p-2 w-xs" >
-                                                                    &nbsp;WAITING&nbsp;
-                                                                </a>
-                                                            ';
-                                                        }
-
-                                                        // set actual IFA status
-                                                        $actual_ifa = generateStatusBadge(
-                                                            $row->actual_ifa_status,
-                                                            $row->actual_ifa,
-                                                            $row->id,
-                                                            $row->description,
-                                                            $linkFile,
-                                                            'IFA',
-                                                            $row->ifa_version,
-                                                            'external_ifa',
-                                                            'IFA Version: ' . $row->ifa_version
-                                                        );
-                                                        $actual_AsBuild = generateStatusBadge(
-                                                            $row->external_asbuild_status,
-                                                            $row->external_asbuild_actual,
-                                                            $row->id,
-                                                            $row->description,
-                                                            $linkFile,
-                                                            'AsBuild',
-                                                            $file_version,
-                                                            'external_asbuild',
-                                                            'version ' . $file_version
-                                                        );
-
-                                                        // set actual IFC status                                                       
-                                                        $actual_ifc = generateStatusBadge(
-                                                            $row->actual_ifc_status,
-                                                            $row->actual_ifc,
-                                                            $row->id,
-                                                            $row->description,
-                                                            $linkFile,
-                                                            'IFC',
-                                                            $row->ifc_version,
-                                                            'external_ifc',
-                                                            'IFC Version: ' . $row->ifc_version
-                                                        );
+                                                            // set actual IFC status                                                       
+                                                            $actual_ifc = generateStatusBadge(
+                                                                $row->actual_ifc_status,
+                                                                $row->actual_ifc,
+                                                                $row->id,
+                                                                $row->description,
+                                                                $linkFile,
+                                                                'IFC',
+                                                                $row->ifc_version,
+                                                                'external_ifc',
+                                                                'IFC Version: ' . $row->ifc_version
+                                                            );
                                                     ?>
-                                                        <tr>
-                                                            <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
-                                                            <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
-                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
-                                                            <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
-                                                            <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
-                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
-                                                            <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
-                                                            <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
-                                                            <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
-                                                            <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
-                                                            <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td>
-                                                            <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
-                                                            <!-- <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td> -->
-                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
-                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
-                                                            <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
-                                                            <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
-                                                            <!-- <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td> -->
-                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
-                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
-                                                            <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
-                                                            <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
-                                                            <td class="text-center" style="background-color: #d2e5f7;">
-                                                                <a href="<?= base_url('document-timeline/' . $row->id) ?>">
-                                                                    <?= $status ?>
-                                                                </a>
-                                                            </td>
-                                                            <td class="text-center" nowrap style="background-color: #d2e5f7">
-                                                                <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>" data-ifc_version="<?= $row->ifc_version ?>" data-ifa_version="<?= $row->ifa_version ?>">
-                                                                    <i class="ri-pencil-fill text-info font-size-20"></i>
-                                                                </a>
-                                                                &nbsp;
-                                                                <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_engineering/delete">
-                                                                    <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td nowrap style="background-color: #d2e5f7;"><?= $no ?></td>
+                                                                <td nowrap style="background-color: #d2e5f7;"><?= $row->wbs_code ?></td>
+                                                                <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->level_code ?> </td>
+                                                                <td class="text-center" style="background-color: #d2e5f7;" nowrap> <?= $row->doc_dicipline ?> </td>
+                                                                <td style="background-color: #d2e5f7;"><?= $row->description ?></td>
+                                                                <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_plan ?></td>
+                                                                <td class="text-center" style="background-color: #d2e5f7;"><?= $row->man_hour_actual ?></td>
+                                                                <!-- <td class="text-center" style="background-color:#faf1e3"><?= $actual_JEDHI ?></td>
+                                                                <td class="text-center" style="background-color:#faf1e3"><?= $enginerPP ?></td>
+                                                                <td class="text-center" style="background-color:#faf1e3"><?= $hoPP  ?></td>
+                                                                <td class="text-center" style="background-color:#faf1e3"><?= $pemPP   ?></td> -->
+                                                                <td class="text-center" style="background-color: #dff5c9;"><?= $row->weight_factor ?>%</td>
+                                                                <!-- <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifr) ?></td> -->
+                                                                <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifa) ?></td>
+                                                                <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->plan_ifc) ?></td>
+                                                                <td class="text-center" style="background-color: #e5f2e5;" nowrap><?= tgl_indo($row->external_asbuild_plan) ?></td>
+                                                                <td class="text-center" style="background-color: #e5f2e5;"><?= $plan_cumulative ?>%</td>
+                                                                <!-- <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifr ?></td> -->
+                                                                <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifa ?></td>
+                                                                <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_ifc ?></td>
+                                                                <td class="text-center" style="background-color: #daf7e8;" nowrap><?= $actual_AsBuild ?></td>
+                                                                <td class="text-center" style="background-color: #daf7e8;"><?= $actual_cumulative ?>%</td>
+                                                                <td class="text-center" style="background-color: #d2e5f7;">
+                                                                    <a href="<?= base_url('document-timeline/' . $row->id) ?>">
+                                                                        <?= $status ?>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="text-center" nowrap style="background-color: #d2e5f7">
+                                                                    <a href="#" id="btn-edit-doc" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="<?= $row->id ?>" data-plan_man_hour="<?= $row->man_hour_plan ?>" data-level_code="<?= $row->level_code ?>" data-description="<?= $row->description ?>" data-weight_factor="<?= $row->weight_factor ?>" data-plan_ifr="<?= $row->plan_ifr ?>" data-external_asbuild_plan="<?= $row->external_asbuild_plan ?>" data-plan_ifa="<?= $row->plan_ifa ?>" data-plan_ifc="<?= $row->plan_ifc ?>" data-ifc_version="<?= $row->ifc_version ?>" data-ifa_version="<?= $row->ifa_version ?>">
+                                                                        <i class="ri-pencil-fill text-info font-size-20"></i>
+                                                                    </a>
+                                                                    &nbsp;
+                                                                    <a href="#" id="btn-hapus-doc" data-id="<?= $row->id ?>" data-object="Project_detail_engineering/delete">
+                                                                        <i class="ri-delete-bin-6-fill text-danger font-size-20"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                     <?php endforeach; ?>
                                                     <?php
-                                                    for ($i_cum_plan = 1; $i_cum_plan < count($weekPlan); $i_cum_plan++) {
-                                                        $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan - 1];
-                                                    }
-                                                    for ($i_cum_act = 1; $i_cum_act < count($weekActual); $i_cum_act++) {
-                                                        $weekActual[$i_cum_act] += $weekActual[$i_cum_act - 1];
-                                                    }
-                                                    for ($week_counter = 0; $week_counter < count($weekPlan); $week_counter++) {
-                                                        echo '
-                                                            <input type="hidden" id="week_plan_' . $week_counter . '" value="' . $weekPlan[$week_counter] . '" />
-                                                            <input type="hidden" id="week_actual_' . $week_counter . '" value="' . $weekActual[$week_counter] . '" />
-                                                        ';
-                                                    }
+                                                        for ($i_cum_plan = 1; $i_cum_plan < count($weekPlan); $i_cum_plan++) {
+                                                            $weekPlan[$i_cum_plan] += $weekPlan[$i_cum_plan - 1];
+                                                        }
+                                                        for ($i_cum_act = 1; $i_cum_act < count($weekActual); $i_cum_act++) {
+                                                            $weekActual[$i_cum_act] += $weekActual[$i_cum_act - 1];
+                                                        }
+                                                        for ($week_counter = 0; $week_counter < count($weekPlan); $week_counter++) {
+                                                            echo '
+                                                                <input type="hidden" id="week_plan_' . $week_counter . '" value="' . $weekPlan[$week_counter] . '" />
+                                                                <input type="hidden" id="week_actual_' . $week_counter . '" value="' . $weekActual[$week_counter] . '" />
+                                                            ';
+                                                        }
                                                     ?>
                                                 </tbody>
                                             </table>
