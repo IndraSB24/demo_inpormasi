@@ -138,8 +138,9 @@ class Project_detail_engineering extends BaseController
                 'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild' ),
                 'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild' )
             ],
-            'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek(1),
-            'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline()
+            'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek($project_id),
+            'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline(),
+            'idProject' => $project_id
         ];
 
 		return view('engineering-document', $data);
