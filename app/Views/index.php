@@ -437,7 +437,7 @@
                                 }, 100)
                             },
                             onClose: function() {
-                                // location.reload()
+                                location.reload()
                             }
                         })
                     }
