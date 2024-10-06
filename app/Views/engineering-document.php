@@ -69,9 +69,9 @@
                     <div class="col-6">
                         <select class="form-control select2">
                             <option>Select</option>
-                            <option value="EL">Week 1</option>
-                            <option value="FA">Week 2</option>
-                            <option value="FI">Week 3</option>
+                            <?php foreach ($weekDataAll as $item): ?>
+                                <option value="<?= $item->id ?>">Week <?= $item->week_number ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="col-6" style="padding-left: 0;">
