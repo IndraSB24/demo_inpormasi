@@ -166,7 +166,8 @@
                                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff; height: 200px; background: linear-gradient(to top, var(--bs-success) 0%, 
                                                     var(--bs-success) <?= ($docProgress['ifa_actual'] / ($docProgress['ifa_plan'] ?: 1)) * 100 ?>%, #ffffff 0%, #ffffff 100%);">
                                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifa_actual'] ?> / <?= $docProgress['ifa_plan'] ?></span>
+                                                        A: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifa_actual'] ?></span><br>
+                                                        P: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifa_plan'] ?></span>
                                                         <h6 class="card-title text-truncate mb-2 text-center" style="font-size: 10px;font-weight:700">IFA</h6>
                                                     </div>
                                                 </div>
@@ -176,7 +177,8 @@
                                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff; height: 200px; background: linear-gradient(to top, var(--bs-warning) 0%, 
                                                     var(--bs-warning) <?= ($docProgress['ifc_actual'] / ($docProgress['ifc_plan'] ?: 1)) * 100 ?>%, #ffffff 0%, #ffffff 100%);">
                                                     <div style="background-color:white;padding: 10px;border-radius: 20px;">
-                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifc_actual'] ?> / <?= $docProgress['ifc_plan'] ?></span>
+                                                        A: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifc_actual'] ?></span><br>
+                                                        P: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['ifc_plan'] ?></span>
                                                         <h6 class="card-title text-truncate mb-2 text-center" style="font-size: 10px;font-weight:700">IFC</h6>
                                                     </div>
                                                 </div>
@@ -186,7 +188,8 @@
                                                 <div class="galon d-flex align-items-center" style="border: 10px solid #fff; height: 200px; background: linear-gradient(to top, var(--bs-danger) 0%, 
                                                     var(--bs-danger) <?= ($docProgress['asbuild_actual'] / ($docProgress['asbuild_plan'] ?: 1)) * 100 ?>%, #ffffff 0%, #ffffff 100%);">
                                                     <div style="background-color:white;padding: 5px;border-radius: 20px;">
-                                                        <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['asbuild_actual'] ?> / <?= $docProgress['asbuild_plan'] ?></span>
+                                                        A: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['asbuild_actual'] ?></span><br>
+                                                        P: <span style="font-size: 11px;" class="mb-0 text-center"><?= $docProgress['asbuild_plan'] ?></span>
                                                         <h6 class="card-title text-truncate mb-2 text-center" style="font-size: 10px;font-weight:700">ASBUILD</h6>
                                                     </div>
                                                 </div>
