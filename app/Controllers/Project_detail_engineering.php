@@ -141,7 +141,8 @@ class Project_detail_engineering extends BaseController
             'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek($project_id),
             'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline($project_id),
             'idProject' => $project_id,
-            'weekDataAll' => $this->Model_week->getAllByProject($project_id)
+            'weekDataAll' => $this->Model_week->getAllByProject($project_id),
+            'filterWeekId' => $week
         ];
 
 		return view('engineering-document', $data);
