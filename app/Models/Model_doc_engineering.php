@@ -143,13 +143,13 @@ class Model_doc_engineering extends Model
             $this->select('
                 project_detail_engineering.*,
                 dh.name as doc_dicipline,
-                kdr.id_doc_role as has_access
+                super_admin as has_access
             ')
             ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
-            ->join('karyawan_doc_role kdr', 
-                'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
-                'LEFT'
-            )
+            // ->join('karyawan_doc_role kdr', 
+            //     'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
+            //     'LEFT'
+            // )
             ->where('project_detail_engineering.id_project', $idProject)
             ->where('project_detail_engineering.deleted_at', NULL)
             ->orderBy('project_detail_engineering.id');
@@ -158,7 +158,7 @@ class Model_doc_engineering extends Model
             $this->select('
                 project_detail_engineering.*,
                 dh.name as doc_dicipline,
-                null as has_access
+                super_admin as has_access
             ')
             ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
             ->where('project_detail_engineering.id_project', $idProject)
