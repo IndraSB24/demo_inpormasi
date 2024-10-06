@@ -138,7 +138,7 @@ class Model_doc_engineering extends Model
     }
 
     // get all
-    public function get_all($id_karyawan=null) {
+    public function get_all($idProject, $id_karyawan=null) {
         if($id_karyawan != null){
             $this->select('
                 project_detail_engineering.*,
@@ -150,6 +150,7 @@ class Model_doc_engineering extends Model
                 'kdr.id_karyawan = ' . $this->db->escape($id_karyawan) . ' AND kdr.doc_type = "engineering" AND kdr.id_doc=project_detail_engineering.id', 
                 'LEFT'
             )
+            ->where('project_detail_engineering.id_project', $idProject)
             ->where('project_detail_engineering.deleted_at', NULL)
             ->orderBy('project_detail_engineering.id');
 
@@ -160,6 +161,7 @@ class Model_doc_engineering extends Model
                 null as has_access
             ')
             ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
+            ->where('project_detail_engineering.id_project', $idProject)
             ->where('project_detail_engineering.deleted_at', NULL)
             ->orderBy('project_detail_engineering.id');
         }
