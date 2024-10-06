@@ -168,7 +168,7 @@
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                            <span><strong>WF: <?= number_format(floatval($data_page->engineering_wf) * 10, 2) ?>% </strong></span>
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->engineering_wf) * 100, 2) ?>% </strong></span>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
@@ -194,7 +194,7 @@
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                     <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                            <span><strong>WF: <?= number_format(floatval($data_page->procurement_wf) * 10, 2) ?> </strong></span>
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->procurement_wf) * 100, 2) ?> </strong></span>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
