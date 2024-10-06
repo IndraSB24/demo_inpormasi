@@ -176,4 +176,18 @@ class Model_week extends Model
         return $result ? $result->week_number : null;
     }
 
+    // get all data week by project
+    public function getAllByProject($id_project) {
+        $sql = "
+            SELECT
+                *
+            FROM
+                data_week
+            WHERE
+                id_project = ".$id_project."
+        ";
+    
+        return $this->get()->getResult();
+    }
+
 }
