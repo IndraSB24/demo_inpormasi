@@ -33,7 +33,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <?php foreach($sidebar_data as $list): ?>
                             <li>
-                                <a href="<?= base_url('project-dashboard') ?>">
+                                <a href="<?= base_url('project/index/""/' . $list->id) ?>">
                                     <?= $list->contract_no ?>
                                 </a>
                             </li>
