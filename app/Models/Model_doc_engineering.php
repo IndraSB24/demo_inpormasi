@@ -143,7 +143,7 @@ class Model_doc_engineering extends Model
             $this->select('
                 project_detail_engineering.*,
                 dh.name as doc_dicipline,
-                super_admin as has_access
+                "super_admin" as has_access
             ')
             ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
             // ->join('karyawan_doc_role kdr', 
@@ -158,7 +158,7 @@ class Model_doc_engineering extends Model
             $this->select('
                 project_detail_engineering.*,
                 dh.name as doc_dicipline,
-                super_admin as has_access
+                "super_admin" as has_access
             ')
             ->join('data_helper dh', 'dh.id = project_detail_engineering.id_doc_dicipline', 'LEFT')
             ->where('project_detail_engineering.id_project', $idProject)
