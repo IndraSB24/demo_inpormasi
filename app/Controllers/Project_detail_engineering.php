@@ -106,7 +106,7 @@ class Project_detail_engineering extends BaseController
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),
 			'page_title' => view('partials/page-title', ['title' => 'Project Document', 'pagetitle' => 'MDR', 'subtitle' => 'Project Name']),
-			'list_doc_engineering' => $this->doc_engineering_model->get_all(sess('active_karyawan_id')),
+			'list_doc_engineering' => $this->doc_engineering_model->get_all($project_id, sess('active_karyawan_id')),
             'data_weight_factor' => $this->doc_engineering_model->get_weight_factor(),
             'data_weight_factor_plan' => $this->doc_engineering_model->get_plan_weight_factor(),
             'data_date_range' => $this->doc_engineering_model->get_plan_range(),
