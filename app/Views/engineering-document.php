@@ -198,7 +198,7 @@
                                             <div class="col-6">
                                                 <!-- Div Induk -->
                                                 <div class="text-center selectable" style="border-top-left-radius: 25px;background-color:#EDE580; padding: 7px; display: flex; justify-content: flex-end;" 
-                                                onclick="window.location.href = '<?= base_url('engineering-doc-list/1') ?>';"
+                                                onclick="window.location.href = '<?= base_url('engineering-doc-list') . '/' . $idProject ?>';"
                                                 >
                                                     <!-- Div Anak -->
                                                     <strong><span style="padding-right: 5px;"><i class="fas fa-info-circle"></i> Click for Detail</span></strong>
