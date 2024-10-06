@@ -215,7 +215,7 @@ class Model_doc_engineering extends Model
     }
 
     // get scurve chart data plan
-    public function getScurveDataPlan($idProject = 1)
+    public function getScurveDataPlan($idProject)
     {
         $sql = "
             SELECT 
@@ -281,7 +281,7 @@ class Model_doc_engineering extends Model
     }
 
     // get scurve chart data actual
-    public function getScurveDataActual($idProject = 1)
+    public function getScurveDataActual($idProject)
     {
         $sql = "
             SELECT 
