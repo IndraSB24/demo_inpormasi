@@ -194,7 +194,7 @@
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                     <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                            <span><strong>WF: <?= number_format(floatval($data_page->procurement_wf), 2) ?> </strong></span>
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->procurement_wf), 2) ?>% </strong></span>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
@@ -220,7 +220,7 @@
                                                     </div>
                                                     <div class="col-5" style="padding-left:0;text-align: left;display:flex;flex-direction:column;justify-content: center;">
                                                     <div style="display: flex; justify-content: flex-start; align-items: center;">
-                                                            <span><strong>WF: <?= number_format(floatval($data_page->construction_wf), 2) ?></strong></span>
+                                                            <span><strong>WF: <?= number_format(floatval($data_page->construction_wf), 2) ?>%</strong></span>
                                                         </div>
                                                         <div style="display: flex; justify-content: flex-start; align-items: center;">
                                                             <div class="dot" style="background-color: rgba(86, 100, 210, 0.85);"></div>
@@ -909,22 +909,26 @@
         series: [{
                 name: 'Plan',
                 type: 'column',
-                data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
+                // data: [0, 10, 15, 10, 5, 8, 6, 14, 7, 5, 8, 2]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             },
             {
                 name: 'Actual',
                 type: 'column',
-                data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
+                // data: [0, 10, 15, 10, 5, 3, 5, 17, 5, 5, 5, 3]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             },
             {
                 name: 'Cum Plan',
                 type: 'line',
-                data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
+                // data: [0, 10, 25, 35, 40, 48, 54, 68, 75, 80, 88, 90]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             },
             {
                 name: 'Cum Actual',
                 type: 'line',
-                data: [0, 10, 20, 30, 40, 43, 48, 65, 70, 75, 80]
+                // data: [0, 10, 20, 30, 40, 43, 48, 65, 70, 75, 80]
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
         ],
         fill: {
