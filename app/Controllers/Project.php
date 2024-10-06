@@ -187,14 +187,59 @@ class Project extends BaseController
 		return view('project-dashboard-overal-prog-month', $data);
 	}
 
-	public function add(){
+	// public function add(){
 
+	// 	$engineering_value = $this->request->getPost('engineering_value');
+	// 	$procurement_value = $this->request->getPost('procurement_value');
+	// 	$construction_value = $this->request->getPost('construction_value');
+
+	// 	$total_value = $engineering_value + $procurement_value + $construction_value;
+
+	// 	// Prevent division by zero
+	// 	if ($total_value > 0) {
+	// 		// Calculate the work factors (as percentages or ratios)
+	// 		$engineering_wf = $engineering_value / $total_value;
+	// 		$procurement_wf = $procurement_value / $total_value;
+	// 		$construction_wf = $construction_value / $total_value;
+	// 	} else {
+	// 		// Handle case where the total value is zero (no values provided)
+	// 		$engineering_wf = $procurement_wf = $construction_wf = 0;
+	// 	}
+
+	// 	// Optionally convert to percentages
+	// 	$engineering_percentage = $engineering_wf * 100;
+	// 	$procurement_percentage = $procurement_wf * 100;
+	// 	$construction_percentage = $construction_wf * 100;
+
+    // 	$data = [
+	// 		'contract_no'   => $this->request->getPost('contract_no'),
+	// 		'manager'       => $this->request->getPost('project_manager'), 
+	// 		'nama_project'  => $this->request->getPost('nama_project'),
+	// 		'deskripsi'     => $this->request->getPost('description'),
+	// 		'engineering_value'     => $engineering_percentage,
+	// 		'procurement_value'     => $procurement_percentage,
+	// 		'construction_value'     => $construction_percentage,
+	// 		'start_date'    => date_db_format($this->request->getPost('start_date')),
+	// 		'end_date'      => date_db_format($this->request->getPost('end_date')),
+	// 		'engineering_wf' => $engineering_wf,
+	// 		'procurement_wf' => $procurement_wf,
+	// 		'construction_wf' => $construction_wf
+	// 	];
+
+    // 	$this->main_model->save($data);
+
+	// 	// calculate and inject weeks data
+
+    // }
+
+	public function add() {
+		// Get values from request
 		$engineering_value = $this->request->getPost('engineering_value');
 		$procurement_value = $this->request->getPost('procurement_value');
 		$construction_value = $this->request->getPost('construction_value');
-
+	
 		$total_value = $engineering_value + $procurement_value + $construction_value;
-
+	
 		// Prevent division by zero
 		if ($total_value > 0) {
 			// Calculate the work factors (as percentages or ratios)
@@ -205,29 +250,98 @@ class Project extends BaseController
 			// Handle case where the total value is zero (no values provided)
 			$engineering_wf = $procurement_wf = $construction_wf = 0;
 		}
-
-		// Optionally convert to percentages
+	
+		// Convert to percentages
 		$engineering_percentage = $engineering_wf * 100;
 		$procurement_percentage = $procurement_wf * 100;
 		$construction_percentage = $construction_wf * 100;
-
-    	$data = [
-			'contract_no'   => $this->request->getPost('contract_no'),
-			'manager'       => $this->request->getPost('project_manager'), 
-			'nama_project'  => $this->request->getPost('nama_project'),
-			'deskripsi'     => $this->request->getPost('description'),
-			'engineering_value'     => $engineering_percentage,
-			'procurement_value'     => $procurement_percentage,
-			'construction_value'     => $construction_percentage,
-			'start_date'    => date_db_format($this->request->getPost('start_date')),
-			'end_date'      => date_db_format($this->request->getPost('end_date')),
-			'engineering_wf' => $engineering_wf,
-			'procurement_wf' => $procurement_wf,
-			'construction_wf' => $construction_wf
+	
+		// Collect project data
+		$data = [
+			'contract_no'        => $this->request->getPost('contract_no'),
+			'manager'            => $this->request->getPost('project_manager'), 
+			'nama_project'       => $this->request->getPost('nama_project'),
+			'deskripsi'          => $this->request->getPost('description'),
+			'engineering_value'  => $engineering_percentage,
+			'procurement_value'  => $procurement_percentage,
+			'construction_value' => $construction_percentage,
+			'start_date'         => date_db_format($this->request->getPost('start_date')),
+			'end_date'           => date_db_format($this->request->getPost('end_date')),
+			'engineering_wf'     => $engineering_wf,
+			'procurement_wf'     => $procurement_wf,
+			'construction_wf'    => $construction_wf
 		];
-
-    	$this->main_model->save($data);
-    }
+	
+		// Save project data to the database
+		if (!$this->main_model->save($data)) {
+			return json_encode([
+				'success' => false,
+				'message' => 'Failed to save project data.'
+			]);
+		}
+	
+		// Get the project ID after saving
+		$projectId = $this->main_model->insertID();
+	
+		// Calculate and inject weeks data
+		if (!$this->createProjectWeeks($projectId, $data['start_date'], $data['end_date'], 'admin')) {
+			return json_encode([
+				'success' => false,
+				'message' => 'Failed to create weeks for the project.'
+			]);
+		}
+	
+		// If everything is successful, return success message
+		return json_encode([
+			'success' => true,
+			'message' => 'Project and weeks data added successfully.'
+		]);
+	}
+	
+	// Function to create weeks for a project
+	private function createProjectWeeks($id_project, $start_date, $end_date, $created_by) {
+	
+		// Convert start and end dates to DateTime objects
+		$start = new DateTime($start_date);
+		$end = new DateTime($end_date);
+	
+		// Calculate the number of days between start and end date
+		$interval = $start->diff($end);
+		$total_days = $interval->days + 1; // Including the end date
+	
+		$week_number = 1;
+		while ($start <= $end) {
+			// Get the start date of the week
+			$week_start_date = $start->format('Y-m-d');
+	
+			// Calculate the end date of the week (7 days after start, but not past the project end date)
+			$week_end_date = (clone $start)->modify('+6 days');
+			if ($week_end_date > $end) {
+				$week_end_date = $end;
+			}
+			$week_end_date_formatted = $week_end_date->format('Y-m-d');
+	
+			// Insert week data into the data_week table
+			$week_data = [
+				'id_project'   => $id_project,
+				'week_number'  => $week_number,
+				'start_date'   => $week_start_date,
+				'end_date'     => $week_end_date_formatted,
+				'created_by'   => $created_by
+			];
+	
+			// Save to database (assuming you have a model for this table)
+			if (!$this->data_week_model->save($week_data)) {
+				return false; // Return false if week insertion fails
+			}
+	
+			// Move the start date forward by 7 days
+			$start->modify('+7 days');
+			$week_number++;
+		}
+	
+		return true; // Return true if all weeks were successfully created
+	}
     
     public function delete($id_project){
         $this->main_model->delete($id_project);
