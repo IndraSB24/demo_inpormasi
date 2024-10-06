@@ -274,7 +274,7 @@ class Project extends BaseController
 	
 		// Save project data to the database
 		if (!$this->main_model->save($data)) {
-			return json_encode([
+			return $this->response->setJSON([
 				'success' => false,
 				'message' => 'Failed to save project data.'
 			]);
@@ -285,14 +285,14 @@ class Project extends BaseController
 	
 		// Calculate and inject weeks data
 		if (!$this->createProjectWeeks($projectId, $data['start_date'], $data['end_date'], 'admin')) {
-			return json_encode([
+			return $this->response->setJSON([
 				'success' => false,
 				'message' => 'Failed to create weeks for the project.'
 			]);
 		}
 	
 		// If everything is successful, return success message
-		return json_encode([
+		return $this->response->setJSON([
 			'success' => true,
 			'message' => 'Project and weeks data added successfully.'
 		]);
@@ -301,9 +301,9 @@ class Project extends BaseController
 	// Function to create weeks for a project
 	private function createProjectWeeks($id_project, $start_date, $end_date, $created_by) {
 	
-		// Convert start and end dates to DateTime objects
-		$start = new DateTime($start_date);
-		$end = new DateTime($end_date);
+		// Use the global \DateTime class
+		$start = new \DateTime($start_date);
+		$end = new \DateTime($end_date);
 	
 		// Calculate the number of days between start and end date
 		$interval = $start->diff($end);
@@ -342,6 +342,7 @@ class Project extends BaseController
 	
 		return true; // Return true if all weeks were successfully created
 	}
+	
     
     public function delete($id_project){
         $this->main_model->delete($id_project);
