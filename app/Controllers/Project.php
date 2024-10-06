@@ -331,7 +331,7 @@ class Project extends BaseController
 			];
 	
 			// Save to database (assuming you have a model for this table)
-			if (!$this->data_week_model->save($week_data)) {
+			if (!$this->Model_week->save($week_data)) {
 				return false; // Return false if week insertion fails
 			}
 	
