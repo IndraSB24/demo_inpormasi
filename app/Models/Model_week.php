@@ -184,10 +184,11 @@ class Model_week extends Model
             FROM
                 data_week
             WHERE
-                id_project = ".$id_project."
+                id_project = ?
         ";
-    
-        return $this->get()->getResult();
+
+        // Execute the query safely with the provided project ID
+        return $this->db->query($sql, [$id_project])->getResult();
     }
 
 }
