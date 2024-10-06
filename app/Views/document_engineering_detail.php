@@ -1105,11 +1105,11 @@ function generateWaitingBadge()
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <label class="form-label">Weight Factor</label>
                             <input type="number" class="form-control" name="weight_factor" id="weight_factor" />
-                        </div>
-                        <div class="col-md-6">
+                        </div> -->
+                        <div class="col-md-8">
                             <label for="plan_man_hour" class="form-label">Plan Man Hour</label>
                             <input type="number" class="form-control" name="plan_man_hour" id="plan_man_hour" />
                         </div>
