@@ -891,7 +891,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual percent progress till today
-    public function getCumDataActual($idProject = 1, $id_doc_dicipline, $isCum=true, $weekNumber=null){
+    public function getCumDataActual($idProject, $id_doc_dicipline, $isCum=true, $weekNumber=null){
         // Get the current date
         $currentDate = date('Y-m-d');
 
@@ -1035,17 +1035,17 @@ class Model_doc_engineering extends Model
     }
 
     // get week number
-    public function getWeekNumberByDate($date) {
+    public function getWeekNumberByDate($idProject, $date) {
         $sql = "
             SELECT
                 week_number
             FROM
                 data_week
             WHERE
-                start_date <= ? AND end_date >= ?
+                start_date <= ? AND end_date >= ? AND id_project = ?
         ";
     
-        $query = $this->db->query($sql, [$date, $date]);
+        $query = $this->db->query($sql, [$date, $date, $idProject]);
         $result = $query->getRow();
     
         return $result ? $result->week_number : null;
@@ -1056,7 +1056,7 @@ class Model_doc_engineering extends Model
         $currentDate = date('Y-m-d');
     
         // Get the current week number and last week number
-        $currentWeek = $this->getWeekNumberByDate($currentDate);
+        $currentWeek = $this->getWeekNumberByDate($idProject, $currentDate);
         $lastWeek = $currentWeek - 1;
     
         // Initialize the return data array
