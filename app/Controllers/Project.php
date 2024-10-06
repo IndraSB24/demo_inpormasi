@@ -49,8 +49,8 @@ class Project extends BaseController
 			'page_title' => view('partials/page-title', ['title' => 'Project', 'pagetitle' => 'Project Dashboard '.$project_detail, 'subtitle' => '-']),
 			'data_page' => $data_page,
 			'progressChartDataEngineering' => [
-                'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday(),
-                'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday()
+                'percent_plan' => $this->Model_doc_engineering->getCumDataPlanPerToday($id_project),
+                'percent_actual' => $this->Model_doc_engineering->getCumDataActualPerToday($id_project)
             ],
 			'dataProject' => $data_project
 			// 'progressChartDataEngineering' => [

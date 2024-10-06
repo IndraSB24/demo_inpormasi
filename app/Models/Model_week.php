@@ -144,7 +144,7 @@ class Model_week extends Model
     }
 
     // get week number
-    public function getWeekNumberByDate($date) {
+    public function getWeekNumberByDate($date, $id_project) {
         $sql = "
             SELECT
                 week_number
@@ -155,6 +155,22 @@ class Model_week extends Model
         ";
     
         $query = $this->db->query($sql, [$date, $date]);
+        $result = $query->getRow();
+    
+        return $result ? $result->week_number : null;
+    }
+
+    public function getByProject($id_project) {
+        $sql = "
+            SELECT
+                week_number
+            FROM
+                data_week
+            WHERE
+                id_project = ".$id_project."
+        ";
+    
+        $query = $this->db->query($sql);
         $result = $query->getRow();
     
         return $result ? $result->week_number : null;

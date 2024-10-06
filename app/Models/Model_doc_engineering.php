@@ -351,7 +351,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum plan percent progress till today
-    public function getCumDataPlanPerToday($idProject = 1)
+    public function getCumDataPlanPerToday($idProject)
     {
         // Get the current date
         $currentDate = date('Y-m-d');
@@ -418,7 +418,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual percent progress till today
-    public function getCumDataActualPerToday($idProject = 1)
+    public function getCumDataActualPerToday($idProject)
     {
         // Get the current date
         $currentDate = date('Y-m-d');
@@ -485,7 +485,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual document progress till today
-    public function getCumActualDocumentPerToday($idProject = 1)
+    public function getCumActualDocumentPerToday($idProject)
     {
         // Get the current date
         $currentDate = date('Y-m-d');
@@ -509,7 +509,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum plan document progress till today
-    public function getCumPlanDocumentPerToday($idProject = 1)
+    public function getCumPlanDocumentPerToday($idProject)
     {
         // Get the current date
         $currentDate = date('Y-m-d');

@@ -115,7 +115,7 @@ class Project_detail_engineering extends BaseController
             'data_chart_man_hour' => [],
             'selected_week' => $week,
             'subtitle' => 'Judul Project',
-            'dataWeek' => $this->Model_week->findAll(),
+            'dataWeek' => $this->Model_week->getByProject($project_id),
             'scurveData' => [
                 'dataPlan' => $getScurveDataPlan,
                 'dataActual' => $getScurveDataActual,
@@ -131,12 +131,12 @@ class Project_detail_engineering extends BaseController
 			// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
 			// ],
             'docProgress' => [
-                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'ifa' ),
-                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'ifa' ),
-                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'ifc' ),
-                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'ifc' ),
-                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( 1, 'asbuild' ),
-                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( 1, 'asbuild' )
+                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa' ),
+                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa' ),
+                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifc' ),
+                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifc' ),
+                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild' ),
+                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild' )
             ],
             'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek(1),
             'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline()
