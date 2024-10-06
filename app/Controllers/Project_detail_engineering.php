@@ -144,7 +144,7 @@ class Project_detail_engineering extends BaseController
             'weekDataAll' => $this->Model_week->getAllByProject($project_id),
             'filterWeekId' => $week
         ];
-
+        // echo '<pre>'; print_r( $data['weekDataAll'] );die; echo '</pre>';
 		return view('engineering-document', $data);
 	}
 	

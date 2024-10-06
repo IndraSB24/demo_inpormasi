@@ -53,7 +53,7 @@ $routes->get('project-add', 'Project::add');
 $routes->get('project-show-over-prog-month', 'Project::show_over_prog_month_detail');
 
 // Project Detail Engineering Doc
-$routes->get('engineering-dashboard/(:segment)', 'Project_detail_engineering::index/$1');
+$routes->get('engineering-dashboard/(:segment)/(:segment)', 'Project_detail_engineering::index/$1/$2');
 $routes->get('document-timeline/(:segment)', 'Project_detail_engineering::show_doc_timeline/$1');
 $routes->get('commentPdf/(:segment)/(:segment)/(:segment)', 'Project_detail_engineering::show_pdf/$1/$2/$3');
 $routes->get('commentPdf/(:segment)/(:segment)', 'Project_detail_engineering::show_pdf/$1/$2');

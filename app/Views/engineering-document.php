@@ -65,12 +65,12 @@
 
                     </div>
                 </div> -->
-                <div class="col-md-4 row mb-3">
+                <div class="col-md-8 row mb-3">
                     <div class="col-6">
-                        <select class="form-control select2">
+                        <select class="form-control select2" id="filterByWeek">
                             <option>Select</option>
                             <?php foreach ($weekDataAll as $item): ?>
-                                <option value="<?= $item->id ?>">Week <?= $item->week_number ?></option>
+                                <option value="<?= $item->id ?>">Week <?= $item->week_number ?> (<?= tgl_indo($item->start_date) ?> sd <?= tgl_indo($item->end_date) ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -1613,6 +1613,10 @@
             placeholder: 'Pilih opsi',
             maximumSelectionLength: 2 // contoh konfigurasi tambahan
         });
+        $(document).on('change','#filterByWeek',function(){
+            const week = $('#filterByWeek').val();
+            window.location.href = "<?= base_url('engineering-dashboard').'/'.$idProject . '/'  ?>" + week;
+        })
         // cum_percent_counter, 100 - cum_percent_counter
         // total_done_doc_counter, total_doc_counter - total_done_doc_counter
         $('#complete').html(`Plan: ${parseFloat(progressChartData.percent_plan[0].cum_progress_plan).toFixed(2)}%`)
