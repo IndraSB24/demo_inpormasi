@@ -1139,7 +1139,7 @@
             maximumSelectionLength: 2 // contoh konfigurasi tambahan
         });
         $("#Detail-Engineering").click(function() {
-            window.location.href = "<?= base_url('engineering-dashboard').'/'.$dataProject->id ?>"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
+            window.location.href = "<?= base_url('engineering-dashboard').'/'.$dataProject->id . '/' . 0 ?>"; // Ganti "halaman_tujuan.html" dengan URL halaman tujuan yang diinginkan
         });
         $("#Detail-Procurement").click(function() {
             window.location.href = "<?= base_url('procurement-dashboard').'/'.$dataProject->id ?>";
