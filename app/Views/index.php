@@ -53,7 +53,7 @@
                                             <div class="flex-1 overflow-hidden">
                                                 <p class="text-truncate font-size-14 mb-2">Number of Projects</p>
                                                 <h3 class="mb-0 text-light">
-                                                    <?=  count($list_project); ?>
+                                                    <?= count($list_project); ?>
                                                 </h3>
                                             </div>
                                             <div class="text-muted ms-auto text-light">
@@ -76,7 +76,7 @@
                                             <div class="flex-1 overflow-hidden">
                                                 <p class="text-truncate font-size-14 mb-2">On Time/Ahead</p>
                                                 <h3 class="text-light mb-0">
-                                                    <?=  count($list_project); ?>
+                                                    <?= count($list_project); ?>
                                                 </h3>
                                             </div>
                                             <div class="text-light ms-auto">
@@ -185,15 +185,15 @@
                                                     <?php foreach ($list_project as $row) : ?>
                                                         <tr>
                                                             <td>
-                                                                <a href="<?= base_url('project/index/""/'.$row->id) ?>" class="text-info fw-bold">
+                                                                <a href="<?= base_url('project/index/""/' . $row->id) ?>" class="text-info fw-bold">
                                                                     <?= $row->contract_no ?>
-                                                                </a> 
+                                                                </a>
                                                             </td>
                                                             <td><?= tgl_indo($row->start_date) ?></td>
                                                             <td><?= tgl_indo($row->end_date) ?></td>
                                                             <td><?= $row->nama_project ?></td>
                                                             <td><?= $row->manager ?></td>
-                                                            <td><?= rupiah($row->engineering_value + $row->procurement_value + $row->construction_value ) ?></td>
+                                                            <td><?= rupiah($row->engineering_value + $row->procurement_value + $row->construction_value) ?></td>
                                                             <td><?= $row->deskripsi ?></td>
                                                             <td><?= $row->plan ?>%</td>
                                                             <td><?= $row->progress ?>%</td>
@@ -208,7 +208,7 @@
                                                                 ?>
                                                             </td>
                                                             <td id="tooltip-container9">
-                                                                <a type="button" href="<?= base_url('project/index/""/'.$row->id) ?>" class="btn btn-sm btn-success btn-detail" data-id="<?= $row->id ?>">
+                                                                <a type="button" href="<?= base_url('project/index/""/' . $row->id) ?>" class="btn btn-sm btn-success btn-detail" data-id="<?= $row->id ?>">
                                                                     Detail
                                                                 </a>
                                                                 <!-- <button type="button" class="btn btn-sm btn-danger btn-hapus" title="Hapus Data" data-id="<?= $row->id ?>" data-object="Project/delete"><i class="mdi mdi-trash-can font-size-18"></i></button> -->
@@ -412,34 +412,36 @@
                     method: 'POST',
                     dataType: "JSON",
                     data: {
-                        contract_no : $('#contract_no').val(),
-                        start_date : $('#start_date').val(),
-                        end_date : $('#end_date').val(),
-                        project_manager : $('#project_manager').val(),
-                        engineering_value : $('#engineering_value').val(),
-                        procurement_value : $('#procurement_value').val(),
-                        construction_value : $('#construction_value').val(),
-                        nama_project : $('#nama_project').val(),
-                        description : $('#description').val(),
+                        contract_no: $('#contract_no').val(),
+                        start_date: $('#start_date').val(),
+                        end_date: $('#end_date').val(),
+                        project_manager: $('#project_manager').val(),
+                        engineering_value: $('#engineering_value').val(),
+                        procurement_value: $('#procurement_value').val(),
+                        construction_value: $('#construction_value').val(),
+                        nama_project: $('#nama_project').val(),
+                        description: $('#description').val(),
+                    },
+                    success: () => {
+                        Swal.fire({
+                            title: 'Disimpan!',
+                            icon: 'success',
+                            text: 'Data berhasil disimpan.',
+                            timer: 1000,
+                            confirmButtonColor: "#5664d2",
+                            onBeforeOpen: function() {
+                                //Swal.showLoading()
+                                timerInterval = setInterval(function() {
+                                    Swal.getContent().querySelector('strong')
+                                        .textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            onClose: function() {
+                                // location.reload()
+                            }
+                        })
                     }
                 });
-                Swal.fire({
-                    title: 'Disimpan!',
-                    icon: 'success',
-                    text: 'Data berhasil disimpan.',
-                    timer: 1000,
-                    confirmButtonColor: "#5664d2",
-                    onBeforeOpen: function() {
-                        //Swal.showLoading()
-                        timerInterval = setInterval(function() {
-                            Swal.getContent().querySelector('strong')
-                                .textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    onClose: function() {
-                        // location.reload()
-                    }
-                })
             }
         })
     })
