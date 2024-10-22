@@ -36,6 +36,7 @@ class Project_detail_engineering extends BaseController
         if ($week && $week !== null) {
             $weekDetail = $this->Model_week->find($week);
             $weekStartDate = $weekDetail->start_date;
+            echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         }
 
         echo '<pre>'; print_r( $weekStartDate );die; echo '</pre>';
