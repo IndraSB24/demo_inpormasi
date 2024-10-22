@@ -108,7 +108,7 @@ class Project_detail_engineering extends BaseController
         $weekStartDate = null;
         if ($week && $week !== null) {
             $weekDetail = $this->Model_week->find($week);
-            $weekStartDate = $weekDetail['start_date'];
+            $weekStartDate = $weekDetail->start_date;
         }
 
         $data = [
