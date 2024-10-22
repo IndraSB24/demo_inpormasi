@@ -353,10 +353,10 @@ class Model_doc_engineering extends Model
     }
 
     // get cum plan percent progress till today
-    public function getCumDataPlanPerToday($idProject)
+    public function getCumDataPlanPerToday($idProject, $cuttOffDate = null)
     {
         // Get the current date
-        $currentDate = date('Y-m-d');
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
 
         $sql = "
             SELECT 
