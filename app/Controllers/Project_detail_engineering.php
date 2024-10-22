@@ -30,6 +30,14 @@ class Project_detail_engineering extends BaseController
     }
     
 	public function index($project_id=null, $week=null){
+        // get week detail
+        $weekDetail = null;
+        $weekStartDate = null;
+        if ($week && $week !== null) {
+            $weekDetail = $this->Model_week->find($week);
+            $weekStartDate = $weekDetail->start_date;
+        }
+
         // start of man hour chart data =========================================================
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
         $data_man_hour = [];
@@ -83,7 +91,7 @@ class Project_detail_engineering extends BaseController
         // echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
         // start of scurve data count ============================================================
-        $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan($project_id);
+        $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan($project_id, $weekStartDate);
         $getScurveDataActual = $this->doc_engineering_model->getScurveDataActual($project_id);
 
         // count plan cum
@@ -103,13 +111,7 @@ class Project_detail_engineering extends BaseController
         }
         // end of scurve data ===================================================================
 
-        // get week detail
-        $weekDetail = null;
-        $weekStartDate = null;
-        if ($week && $week !== null) {
-            $weekDetail = $this->Model_week->find($week);
-            $weekStartDate = $weekDetail->start_date;
-        }
+        
 
         $data = [
 			'title_meta' => view('partials/title-meta', ['title' => 'Engineering Document']),

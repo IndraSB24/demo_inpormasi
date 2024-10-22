@@ -217,8 +217,11 @@ class Model_doc_engineering extends Model
     }
 
     // get scurve chart data plan
-    public function getScurveDataPlan($idProject)
+    public function getScurveDataPlan($idProject, $cuttOffDate = null)
     {
+        // Get the current date
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
+
         $sql = "
             SELECT 
                 dw.week_number AS week_number,
@@ -237,7 +240,7 @@ class Model_doc_engineering extends Model
                 LEFT JOIN 
                     project_detail_engineering pde ON (pde.plan_ifa BETWEEN dw.start_date AND dw.end_date)
                 WHERE
-                    dw.id_project = '$idProject'
+                    dw.id_project = '$idProject' AND dw.start_date <= '$currentDate'
                 GROUP BY 
                     dw.week_number
             ) AS IFA ON dw.week_number = IFA.week_number
@@ -253,7 +256,7 @@ class Model_doc_engineering extends Model
                 LEFT JOIN 
                     project_detail_engineering pde ON (pde.plan_ifc BETWEEN dw.start_date AND dw.end_date)
                 WHERE
-                    dw.id_project = '$idProject'
+                    dw.id_project = '$idProject' AND dw.start_date <= '$currentDate'
                 GROUP BY 
                     dw.week_number
             ) AS IFC ON dw.week_number = IFC.week_number
@@ -269,12 +272,12 @@ class Model_doc_engineering extends Model
                 LEFT JOIN 
                     project_detail_engineering pde ON (pde.external_asbuild_plan BETWEEN dw.start_date AND dw.end_date)
                 WHERE
-                    dw.id_project = '$idProject'
+                    dw.id_project = '$idProject' AND dw.start_date <= '$currentDate'
                 GROUP BY 
                     dw.week_number
             ) AS Asbuild ON dw.week_number = Asbuild.week_number
             WHERE
-                dw.id_project = '$idProject'
+                dw.id_project = '$idProject' AND dw.start_date <= '$currentDate'
             ORDER BY 
                 dw.week_number
         ";
