@@ -30,14 +30,12 @@ class Project_detail_engineering extends BaseController
     }
     
 	public function index($project_id=null, $week=null){
-        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         // get week detail
         $weekDetail = null;
         $weekStartDate = null;
         if ($week && $week !== null) {
             $weekDetail = $this->Model_week->find($week);
             $weekStartDate = $weekDetail->start_date;
-            echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         }
 
         echo '<pre>'; print_r( $weekStartDate );die; echo '</pre>';
@@ -45,6 +43,7 @@ class Project_detail_engineering extends BaseController
 
         // start of man hour chart data =========================================================
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
+        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         $data_man_hour = [];
 
         // construct structure
