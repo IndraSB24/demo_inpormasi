@@ -38,11 +38,9 @@ class Project_detail_engineering extends BaseController
             $weekStartDate = $weekDetail->start_date;
         }
 
-        echo '<pre>'; print_r( $weekStartDate );die; echo '</pre>';
-
-
         // start of man hour chart data =========================================================
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
+        echo '<pre>'; print_r( $get_man_hour );die; echo '</pre>';
         echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         $data_man_hour = [];
 
