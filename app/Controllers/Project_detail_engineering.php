@@ -30,6 +30,7 @@ class Project_detail_engineering extends BaseController
     }
     
 	public function index($project_id=null, $week=null){
+        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         // get week detail
         $weekDetail = null;
         $weekStartDate = null;
