@@ -420,10 +420,10 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual percent progress till today
-    public function getCumDataActualPerToday($idProject)
+    public function getCumDataActualPerToday($idProject, $cuttOffDate = null)
     {
         // Get the current date
-        $currentDate = date('Y-m-d');
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
 
         $sql = "
             SELECT 
@@ -535,7 +535,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum actual document progress till today
-    public function getCumActualDocumentPerTodayByStep($idProject, $step)
+    public function getCumActualDocumentPerTodayByStep($idProject, $step, $cuttOffDate = null)
     {
         switch($step){
             case 'ifa':
@@ -550,7 +550,7 @@ class Model_doc_engineering extends Model
         }
 
         // Get the current date
-        $currentDate = date('Y-m-d');
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
 
         $sql = "
             SELECT 
@@ -574,7 +574,7 @@ class Model_doc_engineering extends Model
     }
 
     // get cum plan document progress till today
-    public function getCumPlanDocumentPerTodayByStep($idProject, $step)
+    public function getCumPlanDocumentPerTodayByStep($idProject, $step, $cuttOffDate = null)
     {
         switch($step){
             case 'ifa':
@@ -589,7 +589,7 @@ class Model_doc_engineering extends Model
         }
 
         // Get the current date
-        $currentDate = date('Y-m-d');
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
 
         $sql = "
             SELECT 

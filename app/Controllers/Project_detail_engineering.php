@@ -139,12 +139,12 @@ class Project_detail_engineering extends BaseController
 			// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
 			// ],
             'docProgress' => [
-                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa' ),
-                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa' ),
-                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifc' ),
-                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifc' ),
-                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild' ),
-                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild' )
+                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
+                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
+                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
+                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
+                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate ),
+                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate )
             ],
             'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek($project_id),
             'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline($project_id),
