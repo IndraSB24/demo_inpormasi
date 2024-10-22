@@ -93,8 +93,8 @@ class Project_detail_engineering extends BaseController
 
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan($project_id, $weekStartDate);
-        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         $getScurveDataActual = $this->doc_engineering_model->getScurveDataActual($project_id, $weekStartDate);
+        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
 
         // count plan cum
         $getScurveDataPlanCum = [];
