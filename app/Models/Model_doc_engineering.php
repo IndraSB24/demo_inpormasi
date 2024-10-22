@@ -1073,29 +1073,20 @@ class Model_doc_engineering extends Model
     
         // Iterate through each discipline
         foreach ($diciplineList as $value) {
-            // $cumPlan = $this->getCumDataPlan($idProject, $value->id, true, null);
-            // $cumActual = $this->getCumDataActual($idProject, $value->id, true, null);
-            // $cumPlanCurrentWeek = $this->getCumDataPlan($idProject, $value->id, false, $currentWeek);
-            // $cumActualCurrentWeek = $this->getCumDataActual($idProject, $value->id, false, $currentWeek);
-            // $cumPlanLastWeek = $this->getCumDataPlan($idProject, $value->id, false, $lastWeek);
-            // $cumActualLastWeek = $this->getCumDataActual($idProject, $value->id, false, $lastWeek);
+            $cumPlan = $this->getCumDataPlan($idProject, $value->id, true, null);
+            $cumActual = $this->getCumDataActual($idProject, $value->id, true, null);
+            $cumPlanCurrentWeek = $this->getCumDataPlan($idProject, $value->id, false, $currentWeek);
+            $cumActualCurrentWeek = $this->getCumDataActual($idProject, $value->id, false, $currentWeek);
+            $cumPlanLastWeek = $this->getCumDataPlan($idProject, $value->id, false, $lastWeek);
+            $cumActualLastWeek = $this->getCumDataActual($idProject, $value->id, false, $lastWeek);
             
-            // $returnData[$value->name] = [
-            //     'cumPlan' => $cumPlan[0]->cum_progress_plan,
-            //     'cumActual' => $cumActual[0]->cum_progress_actual,
-            //     'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0]->cum_progress_plan,
-            //     'cumActualCurrentWeek' => $cumActualCurrentWeek[0]->cum_progress_actual,
-            //     'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
-            //     'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
-            // ];
-
             $returnData[$value->name] = [
-                'cumPlan' => 0,
-                'cumActual' => 0,
-                'cumPlanCurrentWeek' => 0,
-                'cumActualCurrentWeek' => 0,
-                'cumPlanLastWeek' => 0,
-                'cumActualLastWeek' => 0,
+                'cumPlan' => $cumPlan[0]->cum_progress_plan,
+                'cumActual' => $cumActual[0]->cum_progress_actual,
+                'cumPlanCurrentWeek' => $cumPlanCurrentWeek[0]->cum_progress_plan,
+                'cumActualCurrentWeek' => $cumActualCurrentWeek[0]->cum_progress_actual,
+                'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
+                'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
             ];
         }
     

@@ -110,9 +110,7 @@ class Project_detail_engineering extends BaseController
             $actual_cum_counted += $value->cum_actual_wf;
             $getScurveDataActualCum[$key] = $actual_cum_counted;
         }
-        // end of scurve data ===================================================================
-
-        $progressByDicipline = $this->doc_engineering_model->getProgressByDicipline($project_id); 
+        // end of scurve data =================================================================== 
 
         
         $data = [
