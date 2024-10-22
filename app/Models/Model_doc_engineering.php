@@ -1088,6 +1088,15 @@ class Model_doc_engineering extends Model
                 'cumPlanLastWeek' => $cumPlanLastWeek[0]->cum_progress_plan,
                 'cumActualLastWeek' => $cumActualLastWeek[0]->cum_progress_actual
             ];
+
+            $returnData[$value->name] = [
+                'cumPlan' => 0,
+                'cumActual' => 0,
+                'cumPlanCurrentWeek' => 0,
+                'cumActualCurrentWeek' => 0,
+                'cumPlanLastWeek' => 0,
+                'cumActualLastWeek' => 0
+            ];
         }
     
         // Return the aggregated data

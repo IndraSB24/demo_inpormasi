@@ -94,7 +94,6 @@ class Project_detail_engineering extends BaseController
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan($project_id, $weekStartDate);
         $getScurveDataActual = $this->doc_engineering_model->getScurveDataActual($project_id, $weekStartDate);
-        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
 
         // count plan cum
         $getScurveDataPlanCum = [];
@@ -137,10 +136,6 @@ class Project_detail_engineering extends BaseController
                 'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday($project_id, $weekStartDate),
                 'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday($project_id, $weekStartDate)
             ],
-            // 'progressChartData' => [
-			// 	'percent_plan' => [(object) ['cum_progress_plan' => 67.8910]],
-			// 	'percent_actual' => [(object) ['cum_progress_actual' => 12.345]]
-			// ],
             'docProgress' => [
                 'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
                 'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
