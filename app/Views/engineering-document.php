@@ -56,29 +56,22 @@
             <div class="container-fluid">
                 <?= $page_title ?>
                 <small class="form-label">CUT OFF WEEK: </small>
-                <!-- <div class="col-md-4">
-                    <div class="input-group mb-4" id="datepicker1" style="border-radius: 10px;">
-                        <input type="text" class="form-control rounded-start" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" data-date-container="#datepicker1" data-provide="datepicker" name="cut_off_filter" id="cut_off_filter" style="border-radius: 15px 0 0 15px !important;" />
-                        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
-                        <i class="far fa-calendar"></i>  Filter
-                        </button>
-
-                    </div>
-                </div> -->
                 <div class="col-md-8 row mb-3">
                     <div class="col-6">
                         <select class="form-control select2" id="filterByWeek">
                             <option>Select</option>
                             <?php foreach ($weekDataAll as $item): ?>
-                                <option value="<?= $item->id ?>">Week <?= $item->week_number ?> (<?= tgl_indo($item->start_date) ?> sd <?= tgl_indo($item->end_date) ?>)</option>
+                                <option value="<?= $item->id ?>" <?php $selected_week == $item->id ? "selected" : "" ?>>Week <?= $item->week_number ?> 
+                                    (<?= tgl_indo($item->start_date) ?> sd <?= tgl_indo($item->end_date) ?>)
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="col-6" style="padding-left: 0;">
+                    <!-- <div class="col-6" style="padding-left: 0;">
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-add-document">
                             Filter
                         </button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-lg-6 pb-0">
