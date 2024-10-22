@@ -1151,7 +1151,7 @@ function generateWaitingBadge()
                 </div>
                 <!-- modal_add buttons -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                    <a type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</a>
                     <button type="button" class="btn btn-success" id="btn-simpan-doc" title="Add Data">
                         Add
                     </button>
@@ -1374,59 +1374,13 @@ function generateWaitingBadge()
     $(document).on('click', '#btn-simpan-doc', function() {
         const level_code = document.getElementById("level_code").value;
         const description = document.getElementById("description").value;
-        const weight_factor = document.getElementById("weight_factor").value;
+        // const weight_factor = document.getElementById("weight_factor").value;
         const discipline = document.getElementById("discipline").value;
         const external_asbuild_plan = document.getElementById("external_asbuild_plan").value;
         const plan_ifa = document.getElementById("plan_ifa").value;
         const plan_ifc = document.getElementById("plan_ifc").value;
         const man_hour_plan = document.getElementById("plan_man_hour").value;
         var timerInterval;
-        // Swal.fire({
-        //     title: 'Tambah Dokumen?',
-        //     icon: 'info',
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Ya',
-        //     cancelButtonText: 'Batal'
-        // }).then(function(result) {
-        //     if (result.value) {
-        //         $.ajax({
-        //             url: "<?= base_url('Project_detail_engineering/add/doc_engineering') ?>",
-        //             method: 'POST',
-        //             dataType: "JSON",
-        //             data: {
-        //                 level_code: level_code,
-        //                 description: description,
-        //                 weight_factor: weight_factor,
-        //                 discipline: discipline,
-        //                 external_asbuild_plan: external_asbuild_plan,
-        //                 plan_ifa: plan_ifa,
-        //                 plan_ifc: plan_ifc,
-        //                 man_hour_plan: man_hour_plan,
-        //                 idProject: idProject
-        //             },
-        //             success: () => {
-        //                 Swal.fire({
-        //                     title: 'Disimpan!',
-        //                     icon: 'success',
-        //                     text: 'Data berhasil disimpan.',
-        //                     timer: 1000,
-        //                     confirmButtonColor: "#5664d2",
-        //                     onBeforeOpen: function() {
-        //                         //Swal.showLoading()
-        //                         timerInterval = setInterval(function() {
-        //                             Swal.getContent().querySelector('strong')
-        //                                 .textContent = Swal.getTimerLeft()
-        //                         }, 100)
-        //                     },
-        //                     onClose: function() {
-        //                         location.reload()
-        //                     }
-        //                 })
-        //             },
-        //             error: err => console.log(err),
-        //         });
-        //     }
-        // })
 
         Swal.fire({
             title: 'Tambah Dokumen?',
@@ -1443,7 +1397,7 @@ function generateWaitingBadge()
                     data: {
                         level_code: level_code,
                         description: description,
-                        weight_factor: weight_factor,
+                        weight_factor: 0,
                         discipline: discipline,
                         external_asbuild_plan: external_asbuild_plan,
                         plan_ifa: plan_ifa,
