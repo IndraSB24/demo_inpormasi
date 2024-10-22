@@ -112,8 +112,7 @@ class Project_detail_engineering extends BaseController
         }
         // end of scurve data ===================================================================
 
-        $progressByDicipline = $this->doc_engineering_model->getProgressByDicipline($project_id);
-        echo '<pre>'; print_r( "ini lewat" );die; echo '</pre>';
+        $progressByDicipline = $this->doc_engineering_model->getProgressByDicipline($project_id); 
 
         
         $data = [
