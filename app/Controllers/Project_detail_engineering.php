@@ -41,7 +41,6 @@ class Project_detail_engineering extends BaseController
         // start of man hour chart data =========================================================
         $get_man_hour = $this->doc_engineering_model->getManHourByDiciplinePerMonth();
         // echo '<pre>'; print_r( $get_man_hour );die; echo '</pre>';
-        echo '<pre>'; print_r( "masuk sini" );die; echo '</pre>';
         $data_man_hour = [];
 
         // construct structure
@@ -90,7 +89,7 @@ class Project_detail_engineering extends BaseController
         unset($data_man_hour['year_month']['-']);
         // end of man hour chart data ============================================================
         
-        // echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
+        echo '<pre>'; print_r( $data_man_hour['year_month'] );die; echo '</pre>';
 
         // start of scurve data count ============================================================
         $getScurveDataPlan = $this->doc_engineering_model->getScurveDataPlan($project_id, $weekStartDate);
