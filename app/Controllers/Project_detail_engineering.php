@@ -112,9 +112,6 @@ class Project_detail_engineering extends BaseController
         }
         // end of scurve data ===================================================================
 
-        $manHourPerWeek = $this->doc_engineering_model->getManHourByDiciplinePerWeek($project_id);
-        
-
         $progressByDicipline = $this->doc_engineering_model->getProgressByDicipline($project_id);
         echo '<pre>'; print_r( "ini lewat" );die; echo '</pre>';
 
@@ -138,29 +135,17 @@ class Project_detail_engineering extends BaseController
                 'dataPlanCum' => $getScurveDataPlanCum,
                 'dataActualCum' => $getScurveDataActualCum
             ],
-            // 'progressChartData' => [
-            //     'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday($project_id, $weekStartDate),
-            //     'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday($project_id, $weekStartDate)
-            // ],
             'progressChartData' => [
-                'percent_plan' => 20,
-                'percent_actual' => 20
+                'percent_plan' => $this->doc_engineering_model->getCumDataPlanPerToday($project_id, $weekStartDate),
+                'percent_actual' => $this->doc_engineering_model->getCumDataActualPerToday($project_id, $weekStartDate)
             ],
-            // 'docProgress' => [
-            //     'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
-            //     'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
-            //     'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
-            //     'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
-            //     'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate ),
-            //     'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate )
-            // ],
             'docProgress' => [
-                'ifa_plan' => 3,
-                'ifa_actual' => 3,
-                'ifc_plan' => 3,
-                'ifc_actual' => 3,
-                'asbuild_plan' => 3,
-                'asbuild_actual' => 3
+                'ifa_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
+                'ifa_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifa', $weekStartDate ),
+                'ifc_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
+                'ifc_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'ifc', $weekStartDate ),
+                'asbuild_plan' => $this->doc_engineering_model->getCumPlanDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate ),
+                'asbuild_actual' => $this->doc_engineering_model->getCumActualDocumentPerTodayByStep( $project_id, 'asbuild', $weekStartDate )
             ],
             'manHourPerWeek' => $this->doc_engineering_model->getManHourByDiciplinePerWeek($project_id),
             'progressByDicipline' => $this->doc_engineering_model->getProgressByDicipline($project_id),
