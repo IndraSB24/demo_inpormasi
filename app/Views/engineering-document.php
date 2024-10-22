@@ -61,7 +61,7 @@
                         <select class="form-control select2" id="filterByWeek">
                             <option>Select</option>
                             <?php foreach ($weekDataAll as $item): ?>
-                                <option value="<?= $item->id ?>" <?php $selected_week == $item->id ? "selected" : "" ?>>Week <?= $item->week_number ?> 
+                                <option value="<?= $item->id ?>" <?= $selected_week == $item->id ? "selected" : "" ?>>Week <?= $item->week_number ?> 
                                     (<?= tgl_indo($item->start_date) ?> sd <?= tgl_indo($item->end_date) ?>)
                                 </option>
                             <?php endforeach; ?>
