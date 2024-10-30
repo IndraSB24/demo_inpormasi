@@ -1058,8 +1058,8 @@ class Model_doc_engineering extends Model
     }
     
     // get percent progress by dicipline
-    public function getProgressByDicipline($idProject) {
-        $currentDate = date('Y-m-d');
+    public function getProgressByDicipline($idProject, $cuttOffDate) {
+        $currentDate = $cuttOffDate ?: date('Y-m-d');
     
         // Get the current week number and last week number
         $currentWeek = $this->getWeekNumberByDate($idProject, $currentDate);
