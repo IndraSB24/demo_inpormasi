@@ -692,14 +692,17 @@ class Model_doc_engineering extends Model
     public function getDisciplineListByProject($idProject)
     {
         $sql = "
-            SELECT
-                id_doc_dicipline
+            SELECT DISTINCT
+                pde.id_doc_dicipline AS id,
+                dh.name AS name
             FROM
-                project_detail_engineering
+                project_detail_engineering pde
+            LEFT JOIN
+                data_helper dh ON dh.id = pde.id_doc_dicipline
             WHERE
-                id_project = '$idProject'
+                pde.id_project = '$idProject'
         ";
-        
+
         $query = $this->db->query($sql);
         return $query->getResult();
     }
