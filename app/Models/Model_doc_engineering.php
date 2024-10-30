@@ -1088,7 +1088,8 @@ class Model_doc_engineering extends Model
         $returnData = [];
     
         // Get the list of disciplines
-        $diciplineList = $this->getDisciplineList();
+        // $diciplineList = $this->getDisciplineList();
+        $diciplineList = $this->getDisciplineListByProject($idProject);
     
         // Iterate through each discipline
         foreach ($diciplineList as $value) {
