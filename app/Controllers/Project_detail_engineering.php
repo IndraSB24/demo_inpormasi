@@ -113,7 +113,7 @@ class Project_detail_engineering extends BaseController
         // end of scurve data =================================================================== 
 
         $progressByDcicipline = $this->doc_engineering_model->getProgressByDicipline($project_id, $weekStartDate);
-        echo '<pre>'; print_r( $progressByDcicipline );die; echo '</pre>';
+        // echo '<pre>'; print_r( $progressByDcicipline );die; echo '</pre>';
 
         
         $data = [
