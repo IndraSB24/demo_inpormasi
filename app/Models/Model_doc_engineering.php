@@ -676,12 +676,28 @@ class Model_doc_engineering extends Model
     public function getDisciplineList()
     {
         $sql = "
-            SELECT 
+            SELECT
                 *
-            FROM 
+            FROM
                 data_helper
-            WHERE 
+            WHERE
                 type = 'doc_dicipline_engineering' AND name != 'survey & project management'
+        ";
+        
+        $query = $this->db->query($sql);
+        return $query->getResult();
+    }
+
+    // get discipline by project
+    public function getDisciplineListByProject($idProject)
+    {
+        $sql = "
+            SELECT
+                id_doc_dicipline
+            FROM
+                project_detail_engineering
+            WHERE
+                id_project = '$idProject'
         ";
         
         $query = $this->db->query($sql);
