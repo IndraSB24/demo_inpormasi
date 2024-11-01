@@ -21,7 +21,7 @@
             case 'active_karyawan_id':
                 return $session->get('id_karyawan');
             default:
-                return null;
+                return $session->get($parameter);
         }
     }
     

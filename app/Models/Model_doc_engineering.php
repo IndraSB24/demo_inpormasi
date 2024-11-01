@@ -164,6 +164,10 @@ class Model_doc_engineering extends Model
             ->where('project_detail_engineering.id_project', $idProject)
             ->where('project_detail_engineering.deleted_at', NULL)
             ->orderBy('project_detail_engineering.id');
+
+            if (sess('user_discipline')) {
+                $this->where('project_detail_engineering.id_doc_dicipline', sess('user_discipline'));
+            }
         }
         
         return $this->get()->getResult();
